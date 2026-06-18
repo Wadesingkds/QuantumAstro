@@ -1,6 +1,10 @@
 /**
  * /api/candles.js — Proxy fetch XAUUSD OHLC candles
- * Sources: Binance Futures (XAUUSDT) → Binance Spot (PAXGUSDT) → Yahoo Finance (XAUUSD=X)
+ * Sources (priority order):
+ *   1. Binance Futures XAUUSDT
+ *   2. Binance Spot PAXGUSDT (gold-backed token)
+ *   3. CoinGecko PAXG OHLC (gold-backed token, always available)
+ *   4. Yahoo Finance XAUUSD=X / GC=F
  * Query: ?interval=15m&limit=200
  */
 
@@ -45,7 +49,7 @@ export default async function handler(req, res) {
     errors.push(`binance-futures: ${err.message}`);
   }
 
-  // ── Source 2: Binance Spot PAXGUSDT (gold-backed token proxy) ──
+  // ── Source 2: Binance Spot PAXGUSDT ──
   try {
     const url = `https://api.binance.com/api/v3/klines?symbol=PAXGUSDT&interval=${interval}&limit=${lim}`;
     const resp = await fetch(url, { signal: AbortSignal.timeout(8000) });
@@ -67,9 +71,58 @@ export default async function handler(req, res) {
     errors.push(`binance-spot: ${err.message}`);
   }
 
-  // ── Source 3: Yahoo Finance XAUUSD=X ──
+  // ── Source 3: CoinGecko PAXG (gold-backed token OHLC) ──
   try {
-    // Map our intervals to Yahoo Finance format
+    // Map our interval to CoinGecko days parameter
+    const cgDaysMap = {
+      '5m': 1, '15m': 1, '30m': 1, '1h': 7,
+      '2h': 7, '4h': 14, '6h': 14, '8h': 14,
+      '12h': 14, '1d': 90
+    };
+    const cgDays = cgDaysMap[interval] || 7;
+    const url = `https://api.coingecko.com/api/v3/coins/pax-gold/ohlc?vs_currency=usd&days=${cgDays}`;
+    const resp = await fetch(url, {
+      headers: { 'Accept': 'application/json', 'User-Agent': 'Mozilla/5.0' },
+      signal: AbortSignal.timeout(10000)
+    });
+
+    if (resp.ok) {
+      const raw = await resp.json();
+      if (!Array.isArray(raw) || raw.length < 10) throw new Error('Insufficient CoinGecko data');
+
+      // CoinGecko OHLC format: [timestamp_ms, open, high, low, close]
+      // Granularity varies by days: 1d=5min, 7d=30min, 14d=4h, 30d=4h, 90d=4h
+      const candles = raw.map(k => ({
+        time: k[0],
+        open: parseFloat(k[1]),
+        high: parseFloat(k[2]),
+        low: parseFloat(k[3]),
+        close: parseFloat(k[4]),
+        volume: 0,
+        timeISO: new Date(k[0]).toISOString()
+      }));
+
+      // Aggregate candles if needed to match our timeframe
+      const aggregated = aggregateCandles(candles, interval);
+      const trimmed = aggregated.slice(-lim);
+
+      if (trimmed.length < 10) throw new Error('After aggregation insufficient: ' + trimmed.length);
+
+      return res.status(200).json({
+        source: 'coingecko-paxg',
+        symbol: 'PAXG',
+        interval,
+        candles: trimmed,
+        note: 'PAXG gold-backed token via CoinGecko OHLC'
+      });
+    }
+    errors.push(`coingecko: HTTP ${resp.status}`);
+  } catch (err) {
+    errors.push(`coingecko: ${err.message}`);
+  }
+
+  // ── Source 4: Yahoo Finance XAUUSD=X ──
+  try {
     const yahooIntervalMap = {
       '1m': '1m', '3m': '5m', '5m': '5m', '15m': '15m',
       '30m': '30m', '1h': '60m', '2h': '60m', '4h': '60m',
@@ -80,7 +133,7 @@ export default async function handler(req, res) {
 
     const url = `https://query1.finance.yahoo.com/v8/finance/chart/XAUUSD=X?interval=${yInterval}&range=${yahooRange}`;
     const resp = await fetch(url, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; QuantumAstro/1.0)' },
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' },
       signal: AbortSignal.timeout(10000)
     });
 
@@ -112,10 +165,8 @@ export default async function handler(req, res) {
         });
       }
 
-      // Trim to limit
       const trimmed = candles.slice(-lim);
-
-      if (trimmed.length < 10) throw new Error('Insufficient Yahoo candles: ' + trimmed.length);
+      if (trimmed.length < 10) throw new Error('Insufficient Yahoo candles');
 
       return res.status(200).json({
         source: 'yahoo-finance',
@@ -134,4 +185,37 @@ export default async function handler(req, res) {
     error: 'All data sources failed',
     detail: errors.join(' | ')
   });
+}
+
+// Aggregate raw CoinGecko candles into our target timeframe
+function aggregateCandles(candles, targetInterval) {
+  const intervalMs = {
+    '5m': 5 * 60000, '15m': 15 * 60000, '30m': 30 * 60000,
+    '1h': 60 * 60000, '2h': 120 * 60000, '4h': 240 * 60000,
+    '6h': 360 * 60000, '8h': 480 * 60000, '12h': 720 * 60000, '1d': 1440 * 60000
+  };
+  const target = intervalMs[targetInterval] || 15 * 60000;
+
+  // If smallest candle is already >= target, no aggregation needed
+  if (candles.length < 2) return candles;
+  const smallestGap = candles[1].time - candles[0].time;
+  if (smallestGap >= target) return candles;
+
+  const result = [];
+  let bucket = null;
+  for (const c of candles) {
+    const bucketStart = Math.floor(c.time / target) * target;
+    if (!bucket || bucket.time !== bucketStart) {
+      if (bucket) result.push(bucket);
+      bucket = { time: bucketStart, open: c.open, high: c.high, low: c.low, close: c.close, volume: c.volume };
+    } else {
+      bucket.high = Math.max(bucket.high, c.high);
+      bucket.low = Math.min(bucket.low, c.low);
+      bucket.close = c.close;
+      bucket.volume += c.volume;
+    }
+  }
+  if (bucket) result.push(bucket);
+
+  return result.map(c => ({ ...c, timeISO: new Date(c.time).toISOString() }));
 }
