@@ -1095,10 +1095,9 @@
 <div class="card">
   <div class="card-top-line"></div>
 
-  <!-- User Info Badge (new shadcn style) -->
-  <div class="user-badge" id="userBadge">
+  <!-- User Info Badge -->
+  <div class="user-badge" id="userBadge" style="display:none;">
     <span class="user-badge-email" id="userEmail"></span>
-    <span class="user-badge-premium" id="premiumBadge" style="display:none;">PREMIUM</span>
   </div>
 
   <!-- Theme Toggle -->
@@ -1154,9 +1153,6 @@
     </span>
   </button>
   <button class="btn-reset" onclick="reset()">↺ &nbsp;RESET</button>
-  <button class="btn-premium" onclick="showPage('pageSub')" id="btnUpgrade">
-    ✦ &nbsp;UPGRADE TO PREMIUM
-  </button>
   <a href="/tutorial.html" class="btn-premium" id="btnTutorial" onclick="return handleTutorialClick(event)" style="display:inline-block;text-decoration:none;background:#6B4F0A;text-align:center;">
     TUTORIAL
   </a>
@@ -1315,59 +1311,6 @@
       </div>
     </div>
   </div><!-- close tabAstro -->
-
-</div>
-</div>
-
-<!-- ══════════════════════════════════ -->
-<!--         PAGE: SUBSCRIPTION         -->
-<!-- ══════════════════════════════════ -->
-<div class="page" id="pageSub">
-<div class="sub-card">
-
-  <button class="back-btn" onclick="showPage('pageCalc')">
-    ← &nbsp;BACK TO CALCULATOR
-  </button>
-
-  <div class="sub-header">
-    <div class="sub-tag">QUANTUM LEAPS PREMIUM</div>
-    <h2 class="sub-title">Upgrade Your Edge</h2>
-    <div class="sub-desc">Fitur eksklusif untuk trader serius</div>
-  </div>
-
-
-
-  <!-- ONE-TIME OFFER -->
-  <div class="plan-card popular">
-    <div class="popular-badge">✦ HARGA HARI INI</div>
-    <div class="plan-top">
-      <div>
-        <div class="plan-name" style="color:var(--gold-light);">PREMIUM ACCESS</div>
-        <div class="plan-period">Bayar sekali · akses selamanya</div>
-      </div>
-      <div class="plan-price">
-        <div class="plan-amount">Rp 500K</div>
-        <div class="plan-currency">one-time</div>
-      </div>
-    </div>
-    <ul class="plan-features">
-      <li><span class="check">✓</span> <strong>Multi-timeframe M1 & M5</strong></li>
-      <li><span class="check">✓</span> <strong>Confluence Detector</strong></li>
-      <li><span class="check">✓</span> Save History (localStorage)</li>
-      <li><span class="check">✓</span> Export PNG — share ke grup</li>
-      <li><span class="check">✓</span> Custom Offset (atur sendiri)</li>
-      <li><span class="check">✓</span> Priority support via WhatsApp</li>
-      <li><span class="check">✓</span> Semua update fitur selamanya</li>
-    </ul>
-    <button class="btn-subscribe" id="btnSubscribe" onclick="handleSubscribe('lifetime')">
-      BELI SEKARANG
-    </button>
-    <div class="premium-member-badge" id="premiumMemberBadge" style="display:none;">
-      <span class="pm-icon">✦</span> PREMIUM MEMBER
-    </div>
-  </div>
-
-  <div class="sub-note">Hubungi kami untuk info pembayaran & aktivasi akun</div>
 
 </div>
 </div>
