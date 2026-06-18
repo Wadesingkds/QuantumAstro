@@ -1658,6 +1658,12 @@
   // ── LANDING CTA — triggers auth → premium flow ──
   async function landingHandleAccess(e) {
     e.preventDefault();
+    // Test mode: skip auth, go straight to calculator
+    if (isTestMode()) {
+      console.info('[test-mode] landingHandleAccess → skipping auth, going to calculator');
+      showPage('pageCalc');
+      return;
+    }
     const { data: { session } } = await supabaseClient.auth.getSession();
     if (!session) {
       showAuthModal();
@@ -1696,7 +1702,31 @@
   let currentAuthTab = 'login';
 
   // ── PREMIUM CHECK ──
+  // ============================================================================
+  // TEST MODE — bypass all auth + premium gates
+  // Activate via URL: ?test=1  or  ?test (shorthand)
+  // Persisted in localStorage so reload keeps test mode
+  // ============================================================================
+  function isTestMode() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has('test')) {
+        localStorage.setItem('ql-test-mode', '1');
+        return true;
+      }
+      return localStorage.getItem('ql-test-mode') === '1';
+    } catch {
+      return false;
+    }
+  }
+  window.isTestMode = isTestMode;
+
   async function isPremium() {
+    // Test mode: bypass Supabase + subscription check
+    if (isTestMode()) {
+      console.info('[test-mode] isPremium → true (bypass)');
+      return true;
+    }
     // Require authenticated Supabase session
     const sessionPromise = supabaseClient.auth.getSession();
     const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000));
@@ -2350,6 +2380,22 @@ supabaseClient.auth.onAuthStateChange(async (event, session) => {
 
 // Init auth state — jalankan setelah semua CDN scripts selesai load
 async function initAuth() {
+  // Test mode: skip Supabase entirely, go straight to calculator
+  if (isTestMode()) {
+    console.info('[test-mode] initAuth → skipping Supabase, routing to calculator');
+    currentUser = { email: 'test@local', id: 'test-mode' };
+    localStorage.setItem('ql-user-email', 'test@local');
+    await updateUserBadge();
+    await updatePremiumButton();
+    updateLandingNav();
+    const currentPage = document.querySelector('.page.active');
+    if (currentPage && currentPage.id !== 'pageCalc') {
+      showPage('pageCalc');
+    }
+    hideLoader();
+    return;
+  }
+
   try {
     const { data: { session } } = await supabaseClient.auth.getSession();
     if (session && session.user) {
