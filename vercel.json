@@ -1,37 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [{"type": "host", "value": "quantum-leaps-gamma.vercel.app"}],
-      "destination": "https://quantum.sayandaktau.web.id/$1",
-      "permanent": true
-    },
-    {
-      "source": "/tt",
-      "destination": "/?utm_source=tiktok&utm_medium=bio&utm_campaign=tiktok_bio",
-      "permanent": false
-    },
-    {
-      "source": "/tt/v",
-      "destination": "/?utm_source=tiktok&utm_medium=organic&utm_campaign=video_overanalyze",
-      "permanent": false
-    },
-    {
-      "source": "/tt/c",
-      "destination": "/?utm_source=tiktok&utm_medium=organic&utm_campaign=comment_pin",
-      "permanent": false
-    },
-    {
-      "source": "/ig",
-      "destination": "/?utm_source=instagram&utm_medium=bio&utm_campaign=ig_bio",
-      "permanent": false
-    },
-    {
-      "source": "/fb",
-      "destination": "/?utm_source=facebook&utm_medium=bio&utm_campaign=fb_bio",
-      "permanent": false
-    }
-  ],
   "rewrites": [
     {"source": "/tutorial", "destination": "/tutorial.html"}
   ],
