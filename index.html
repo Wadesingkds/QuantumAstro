@@ -1,0 +1,2678 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QUANTUM Leaps — Gann Square of 9 XAUUSD Calculator</title>
+<meta name="description" content="Kalkulasi proyeksi harga XAUUSD dengan metode Gann Square of 9. Tools premium untuk trader gold yang ingin entry lebih presisi. Lifetime access Rp 500K.">
+<meta name="keywords" content="gann square of 9, XAUUSD calculator, gold trading, proyeksi harga emas, gann trading, quantum leaps">
+<meta name="author" content="Quantum Leaps">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://quantum.sayandaktau.web.id/">
+<meta name="google-site-verification" content="a_yDN_bjTuGVg6Op3Er9_Wy8wVHS9cmxkLvZEdlP1jk" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-69XHBCSHF6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-69XHBCSHF6');
+</script>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://quantum.sayandaktau.web.id/">
+<meta property="og:title" content="QUANTUM Leaps — Gann Square of 9 XAUUSD Calculator">
+<meta property="og:description" content="Kalkulasi proyeksi harga XAUUSD dengan metode Gann Square of 9. Tools premium untuk trader gold. Lifetime access Rp 500K.">
+<meta property="og:image" content="https://quantum.sayandaktau.web.id/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="id_ID">
+<meta property="og:site_name" content="Quantum Leaps">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://quantum.sayandaktau.web.id/">
+<meta name="twitter:title" content="QUANTUM Leaps — Gann Square of 9 XAUUSD Calculator">
+<meta name="twitter:description" content="Kalkulasi proyeksi harga XAUUSD dengan metode Gann Square of 9. Tools premium untuk trader gold. Lifetime access Rp 500K.">
+<meta name="twitter:image" content="https://quantum.sayandaktau.web.id/og-image.png">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Quantum Leaps",
+  "description": "Kalkulasi proyeksi harga XAUUSD dengan metode Gann Square of 9 untuk trader gold profesional.",
+  "url": "https://quantum.sayandaktau.web.id",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "500000",
+    "priceCurrency": "IDR",
+    "name": "Lifetime Access"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Quantum Leaps"
+  }
+}
+</script>
+<meta name="theme-color" content="#D4AF37">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="QUANTUM">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<title>QUANTUM Leaps — Gann Square of 9</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  /* ── DARK THEME (default) ── */
+  [data-theme="dark"] {
+    --gold: #D4AF37;
+    --gold-light: #F0D060;
+    --gold-dim: #8B7220;
+    --gold-muted: rgba(212,175,55,0.08);
+    --bg-deep: #080A0D;
+    --bg-card: #0E1117;
+    --bg-input: #131820;
+    --border: #1E2A38;
+    --text-primary: #E8E0CC;
+    --text-secondary: #6B7A8D;
+    --buy-color: #22C55E;
+    --sell-color: #EF4444;
+    --sell-dim: #B91C1C;
+    --grid-line: rgba(212,175,55,0.03);
+    --glow: rgba(212,175,55,0.05);
+    --card-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    --toggle-bg: #1E2A38;
+    --modal-overlay: rgba(4,6,8,0.92);
+    --nav-bg: rgba(8,10,13,0.85);
+    --text-muted: #4A5568;
+    --toggle-icon: "☀️";
+  }
+
+  /* ── APP LOADER — slim loading bar ── */
+  #appLoader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-deep); z-index: 99999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.4s ease;
+  }
+  #appLoader.hidden {
+    opacity: 0; pointer-events: none;
+  }
+  .loader-bar-track {
+    width: 220px; height: 2px; background: var(--border); border-radius: 4px;
+    overflow: hidden;
+  }
+  .loader-bar-track::after {
+    content: ''; display: block; width: 35%; height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-light));
+    border-radius: 4px;
+    animation: loaderSlide 1s ease-in-out infinite;
+  }
+  @keyframes loaderSlide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(385%); }
+  }
+  .loader-text {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* ── LIGHT THEME ── */
+  [data-theme="light"] {
+    --gold: #B8960C;
+    --gold-light: #8B6E00;
+    --gold-dim: #C9A500;
+    --gold-muted: rgba(184,150,12,0.08);
+    --bg-deep: #F0EDE6;
+    --bg-card: #FAFAF8;
+    --bg-input: #F2EFE8;
+    --border: #DDD8CC;
+    --text-primary: #1A1A18;
+    --text-secondary: #7A7060;
+    --buy-color: #16A34A;
+    --sell-color: #DC2626;
+    --sell-dim: #991B1B;
+    --grid-line: rgba(139,110,0,0.05);
+    --glow: rgba(139,110,0,0.04);
+    --card-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    --toggle-bg: #DDD8CC;
+    --modal-overlay: rgba(240,237,230,0.92);
+    --nav-bg: rgba(240,237,230,0.88);
+    --text-muted: #A09888;
+    --toggle-icon: "🌙";
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Rajdhani', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .content-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none; z-index: 0;
+    transition: background-image 0.3s;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── PAGES ── */
+  .page { display: none; }
+  .page.active { display: flex; width: 100%; justify-content: center; }
+
+  /* ── CARD ── */
+  .card {
+    position: relative; z-index: 1;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 100%; max-width: 420px;
+    padding: 32px 28px;
+    box-shadow: 0 0 0 1px rgba(212,175,55,0.05), var(--card-shadow), inset 0 1px 0 rgba(212,175,55,0.08);
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .card-top-line {
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* ── THEME TOGGLE ── */
+  .theme-toggle {
+    position: absolute; top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    background: var(--toggle-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+  .theme-toggle:hover { border-color: var(--gold-dim); transform: scale(1.05); }
+
+  /* ── USER INFO BADGE ── */
+  .user-badge {
+    position: fixed;
+    top: 16px;
+    right: 64px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .user-badge:hover {
+    border-color: var(--gold-dim);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .user-badge.visible { display: flex; }
+  .user-badge-email {
+    font-size: 15px;
+    color: var(--text-primary);
+    font-weight: 500;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .user-badge-premium {
+    font-size: 12px;
+    color: var(--gold);
+    background: rgba(212,175,55,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Mobile: badge flows inside card (static) so it can't overlap the title */
+  @media (max-width: 640px) {
+    .user-badge {
+      position: static;
+      top: auto;
+      right: auto;
+      margin: 0 44px 14px auto;
+      width: fit-content;
+      max-width: calc(100% - 44px);
+      padding: 6px 10px;
+    }
+    .user-badge-email { max-width: 150px; font-size: 14px; }
+    .user-badge-premium { font-size: 11px; padding: 1px 5px; }
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .header-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px; color: var(--gold-dim);
+    letter-spacing: 4px; text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  .main-title {
+    font-size: 28px; font-weight: 700; letter-spacing: 3px;
+    color: var(--gold-light);
+    text-shadow: 0 0 30px rgba(212,175,55,0.2);
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px; color: var(--text-secondary);
+    letter-spacing: 2px; margin-top: 4px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 20px 0;
+  }
+
+  /* ── INPUTS ── */
+  .input-label {
+    font-size: 13px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--text-secondary);
+    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+  }
+  .input-label::before {
+    content: ''; display: inline-block;
+    width: 4px; height: 4px; border-radius: 50%;
+  }
+  .input-label.high::before { background: var(--sell-color); box-shadow: 0 0 6px var(--sell-color); }
+  .input-label.low::before  { background: var(--buy-color);  box-shadow: 0 0 6px var(--buy-color); }
+
+  .input-field {
+    width: 100%;
+    background: var(--bg-input); border: 1px solid var(--border);
+    border-radius: 6px; padding: 14px 16px;
+    font-family: 'Share Tech Mono', monospace; font-size: 20px;
+    color: var(--text-primary); outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.3s;
+    -moz-appearance: textfield;
+  }
+  .input-field::-webkit-outer-spin-button,
+  .input-field::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .input-field:focus { border-color: var(--gold-dim); box-shadow: 0 0 0 2px rgba(212,175,55,0.1); }
+  .input-field.error { border-color: var(--sell-color); box-shadow: 0 0 0 2px rgba(239,68,68,0.15); }
+
+  .error-msg { font-size: 13px; color: var(--sell-color); margin-top: 5px; letter-spacing: 1px; display: none; }
+
+  /* ── BUTTONS ── */
+  .btn-calc {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, #B8962E, var(--gold), #C9A227);
+    border: none; border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif; font-size: 17px; font-weight: 700;
+    letter-spacing: 4px; color: #0A0800; cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(212,175,55,0.25);
+  }
+  .btn-calc:hover { opacity: 0.92; box-shadow: 0 6px 28px rgba(212,175,55,0.4); }
+  .btn-calc:active { transform: scale(0.98); }
+  .btn-calc .loading-dots { display: none; }
+  .btn-calc.loading .btn-text { display: none; }
+  .btn-calc.loading .loading-dots { display: inline-flex; gap: 4px; align-items: center; justify-content: center; }
+
+  .dot { width: 6px; height: 6px; background: #0A0800; border-radius: 50%; animation: bounce 0.6s infinite alternate; }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce { from { transform: translateY(0); opacity: 0.5; } to { transform: translateY(-4px); opacity: 1; } }
+
+  .btn-reset {
+    width: 100%; padding: 13px; background: transparent;
+    border: 1px solid var(--border); border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: 4px; color: var(--text-secondary); cursor: pointer;
+    transition: all 0.2s; margin-top: 10px;
+  }
+  .btn-reset:hover { border-color: var(--sell-dim); color: var(--sell-color); background: rgba(239,68,68,0.05); }
+
+  .btn-premium {
+    width: 100%; padding: 13px; background: transparent;
+    border: 1px solid var(--gold-dim); border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: 3px; color: var(--gold-dim); cursor: pointer;
+    transition: all 0.2s; margin-top: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .btn-premium:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,175,55,0.05); }
+
+  /* ── RESULTS ── */
+  .results-container { display: none; animation: fadeSlideIn 0.4s ease forwards; }
+  .results-container.show { display: block; }
+  @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .results-label { font-size: 12px; letter-spacing: 4px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; }
+
+  .btn-copy {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 13px; font-family: 'Share Tech Mono', monospace; letter-spacing: 1px;
+    color: var(--gold-dim); background: rgba(212,175,55,0.05);
+    border: 1px solid rgba(212,175,55,0.15); border-radius: 4px;
+    padding: 4px 10px; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-copy:hover { color: var(--gold); border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.1); }
+  .btn-copy.copied { color: var(--buy-color); border-color: rgba(34,197,94,0.4); background: rgba(34,197,94,0.05); }
+
+  .result-group { border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+  .result-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.03);
+    transition: background 0.15s;
+  }
+  [data-theme="light"] .result-row { border-bottom: 1px solid rgba(0,0,0,0.04); }
+  .result-row:last-child { border-bottom: none; }
+  .result-row.buy { background: rgba(34,197,94,0.06); }
+  .result-row.buy:hover { background: rgba(34,197,94,0.1); }
+  .result-row.sell { background: rgba(239,68,68,0.06); }
+  .result-row.sell:hover { background: rgba(239,68,68,0.1); }
+
+  .result-name { font-size: 15px; font-weight: 700; letter-spacing: 3px; display: flex; align-items: center; gap: 8px; }
+  .result-name.buy  { color: var(--buy-color); }
+  .result-name.sell { color: var(--sell-color); }
+  .result-badge { font-size: 11px; padding: 2px 5px; border-radius: 3px; letter-spacing: 1px; font-weight: 600; }
+  .badge-buy  { background: rgba(34,197,94,0.15); color: var(--buy-color); }
+  .badge-sell { background: rgba(239,68,68,0.15); color: var(--sell-color); }
+  .result-value { font-family: 'Share Tech Mono', monospace; font-size: 22px; color: var(--text-primary); }
+
+  .footer-note {
+    font-family: 'Share Tech Mono', monospace; font-size: 12px;
+    color: var(--text-secondary); text-align: center;
+    letter-spacing: 1px; opacity: 0.5; margin-top: 20px;
+  }
+
+  /* ── TOAST NOTIFICATIONS (shadcn style) ── */
+  #toastContainer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 420px;
+    padding: 16px;
+    pointer-events: none;
+  }
+
+  .toast {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    pointer-events: auto;
+    cursor: pointer;
+    animation: toastSlideIn 0.2s ease-out;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: all 0.2s;
+  }
+
+  .toast:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  }
+
+  .toast.removing {
+    animation: toastSlideOut 0.15s ease-in forwards;
+  }
+
+  @keyframes toastSlideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes toastSlideOut {
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  .toast-icon {
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .toast-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .toast-title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+
+  .toast-message {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* ── LANDING PAGE LAYOUT ── */
+  body.landing-mode {
+    display: block;
+    align-items: normal;
+    justify-content: normal;
+    padding: 0;
+    min-height: auto;
+  }
+  .page-landing { display: none; }
+  .page-landing.active { display: block; width: 100%; }
+  .page-landing .container {
+    position: relative; z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── LANDING NAV ── */
+  .page-landing nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .page-landing nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 24px;
+    max-width: 900px;
+  }
+  .page-landing .logo {
+    font-size: 20px; font-weight: 700; letter-spacing: 6px;
+    color: var(--gold-light); text-transform: uppercase;
+  }
+  .page-landing .logo span {
+    color: var(--text-secondary); font-weight: 400;
+    font-size: 11px; letter-spacing: 2px;
+  }
+  .page-landing .nav-cta {
+    padding: 8px 20px; background: var(--gold); color: #080A0D;
+    border: none; border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; cursor: pointer; text-transform: uppercase;
+    transition: background 0.2s; text-decoration: none;
+  }
+  .page-landing .nav-cta:hover { background: var(--gold-light); }
+
+  /* ── LANDING SECTIONS ── */
+  .page-landing section { padding: 100px 0; }
+  .page-landing .section-label {
+    font-family: 'Share Tech Mono', monospace; font-size: 11px;
+    color: var(--gold-dim); letter-spacing: 5px;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .page-landing .sec-title {
+    font-size: 28px; font-weight: 700; letter-spacing: 2px;
+    color: var(--text-primary); margin-bottom: 12px;
+  }
+  .page-landing .sec-sub {
+    font-size: 15px; color: var(--text-secondary);
+    letter-spacing: 0.5px; margin-bottom: 40px;
+  }
+
+  /* ── DEMO VIDEO ── */
+  .page-landing .demo-video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 45%;
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    border-radius: 12px;
+    border: 1px solid var(--gold-dim, rgba(212,175,55,0.15));
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  }
+  .page-landing .demo-video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+  .page-landing .demo-tutorial-link {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 14px;
+  }
+  .page-landing .demo-tutorial-link a {
+    color: var(--gold, #D4AF37);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .page-landing .demo-tutorial-link a:hover {
+    color: var(--gold-light, #F0D060);
+  }
+  @media (max-width: 720px) {
+    .page-landing .demo-video-wrapper {
+      padding-bottom: 56.25%;
+    }
+  }
+
+  /* ── HERO ── */
+  .page-landing #hero { padding-top: 160px; padding-bottom: 80px; text-align: center; }
+  .page-landing .hero-badge {
+    display: inline-block; padding: 6px 16px;
+    border: 1px solid var(--gold-dim); border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace; font-size: 11px;
+    color: var(--gold-dim); letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 32px;
+  }
+  .page-landing .hero-title {
+    font-size: 44px; font-weight: 700; letter-spacing: 4px;
+    line-height: 1.15; color: var(--text-primary); margin-bottom: 20px;
+  }
+  .page-landing .hero-title em { font-style: normal; color: var(--gold-light); }
+  .page-landing .hero-sub {
+    font-size: 17px; color: var(--text-secondary);
+    line-height: 1.7; max-width: 560px;
+    margin: 0 auto 40px; letter-spacing: 0.5px;
+  }
+  .page-landing .hero-cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 40px; background: var(--gold); color: #080A0D;
+    border: none; border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700;
+    letter-spacing: 3px; cursor: pointer; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .page-landing .hero-cta:hover { background: var(--gold-light); }
+  .page-landing .hero-note {
+    margin-top: 16px; font-size: 13px;
+    color: var(--text-muted); letter-spacing: 1px;
+  }
+
+  /* ── FEATURES ── */
+  .page-landing .feature-list { list-style: none; padding: 0; }
+  .page-landing .feature-list li {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 0; border-bottom: 1px solid var(--border);
+  }
+  .page-landing .feature-list li:last-child { border-bottom: none; }
+  .page-landing .feature-marker {
+    flex-shrink: 0; width: 6px; height: 6px;
+    margin-top: 10px; border-radius: 50%; background: var(--gold);
+  }
+  .page-landing .feature-content h3 {
+    font-size: 17px; font-weight: 600; letter-spacing: 0.5px;
+    color: var(--text-primary); margin-bottom: 4px;
+  }
+  .page-landing .feature-content p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .page-landing .steps { list-style: none; padding: 0; }
+  .page-landing .steps li {
+    display: flex; align-items: flex-start; gap: 20px;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+  }
+  .page-landing .steps li:last-child { border-bottom: none; }
+  .page-landing .step-num {
+    flex-shrink: 0; width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold-dim); border-radius: 50%;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px; color: var(--gold);
+  }
+  .page-landing .step-content h3 {
+    font-size: 17px; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 4px;
+  }
+  .page-landing .step-content p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* ── PRICING ── */
+  .page-landing .pricing-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 48px 40px;
+    position: relative; text-align: center;
+    max-width: 480px; margin: 0 auto;
+  }
+  .page-landing .pricing-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius: 10px 10px 0 0;
+  }
+  .page-landing .pricing-plan {
+    font-family: 'Share Tech Mono', monospace; font-size: 11px;
+    color: var(--gold-dim); letter-spacing: 5px;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .page-landing .pricing-price {
+    font-size: 52px; font-weight: 700; letter-spacing: 2px;
+    color: var(--gold-light); margin-bottom: 4px;
+  }
+  .page-landing .pricing-note {
+    font-size: 14px; color: var(--text-secondary); margin-bottom: 32px;
+  }
+  .page-landing .pricing-features { list-style: none; padding: 0; text-align: left; margin-bottom: 36px; }
+  .page-landing .pricing-features li {
+    padding: 10px 0; font-size: 15px; color: var(--text-primary);
+    letter-spacing: 0.5px; display: flex; align-items: center;
+    gap: 10px; border-bottom: 1px solid var(--border);
+  }
+  .page-landing .pricing-features li:last-child { border-bottom: none; }
+  .page-landing .pricing-features li::before {
+    content: '✦'; color: var(--gold); font-size: 12px; flex-shrink: 0;
+  }
+  .page-landing .pricing-cta {
+    display: inline-block; padding: 16px 48px;
+    background: var(--gold); color: #080A0D; border: none; border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700;
+    letter-spacing: 3px; cursor: pointer; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .page-landing .pricing-cta:hover { background: var(--gold-light); }
+  .page-landing .pricing-payment {
+    margin-top: 16px; font-size: 12px; color: var(--text-muted); letter-spacing: 1px;
+  }
+
+  /* ── FAQ ── */
+  .page-landing .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+  .page-landing .faq-q {
+    font-size: 17px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;
+  }
+  .page-landing .faq-a {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+  }
+
+  /* ── LANDING FOOTER ── */
+  .page-landing footer {
+    border-top: 1px solid var(--border); padding: 40px 0; text-align: center;
+  }
+  .page-landing footer .logo { margin-bottom: 12px; display: block; }
+  .page-landing footer .links {
+    display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .page-landing footer .links a {
+    font-size: 13px; color: var(--text-secondary);
+    letter-spacing: 1px; text-decoration: none; transition: color 0.2s;
+  }
+  .page-landing footer .links a:hover { color: var(--gold); }
+  .page-landing footer .copyright {
+    font-size: 12px; color: var(--text-muted); letter-spacing: 1px;
+  }
+
+  /* ── LANDING RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .page-landing .hero-title { font-size: 30px; letter-spacing: 2px; }
+    .page-landing .hero-sub { font-size: 15px; }
+    .page-landing section { padding: 70px 0; }
+    .page-landing #hero { padding-top: 130px; padding-bottom: 50px; }
+    .page-landing .pricing-card { padding: 36px 24px; }
+    .page-landing .pricing-price { font-size: 40px; }
+    .page-landing .sec-title { font-size: 22px; }
+  }
+
+  /* shadcn variants */
+  .toast.success {
+    border-left: 3px solid var(--buy-color);
+  }
+  .toast.success .toast-icon { color: var(--buy-color); }
+
+  .toast.error {
+    border-left: 3px solid var(--sell-color);
+  }
+  .toast.error .toast-icon { color: var(--sell-color); }
+
+  .toast.warning {
+    border-left: 3px solid #F59E0B;
+  }
+  .toast.warning .toast-icon { color: #F59E0B; }
+
+  .toast.info {
+    border-left: 3px solid var(--gold);
+  }
+  .toast.info .toast-icon { color: var(--gold); }
+
+  @media (max-width: 640px) {
+    #toastContainer {
+      left: 0;
+      right: 0;
+      max-width: none;
+      padding: 12px;
+    }
+    .toast {
+      font-size: 15px;
+      padding: 14px;
+    }
+  }
+
+  /* ── SUBSCRIPTION PAGE ── */
+  .sub-card {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 460px;
+  }
+
+  .back-btn {
+    display: flex; align-items: center; gap: 6px;
+    font-family: 'Share Tech Mono', monospace; font-size: 13px;
+    color: var(--text-secondary); letter-spacing: 2px;
+    background: none; border: none; cursor: pointer;
+    margin-bottom: 20px; padding: 0; transition: color 0.2s;
+  }
+  .back-btn:hover { color: var(--gold); }
+
+  .sub-header { text-align: center; margin-bottom: 28px; }
+  .sub-tag { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--gold-dim); letter-spacing: 4px; margin-bottom: 8px; }
+  .sub-title { font-size: 26px; font-weight: 700; letter-spacing: 2px; color: var(--gold-light); }
+  .sub-desc { font-size: 15px; color: var(--text-secondary); margin-top: 6px; letter-spacing: 1px; }
+
+  .plan-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+    margin-bottom: 14px; position: relative;
+    transition: all 0.2s; cursor: pointer;
+  }
+  .plan-card:hover { border-color: var(--gold-dim); box-shadow: 0 4px 20px rgba(212,175,55,0.1); }
+  .plan-card.popular {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold-dim), 0 8px 30px rgba(212,175,55,0.15);
+  }
+
+  .popular-badge {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: linear-gradient(135deg, #B8962E, var(--gold));
+    color: #0A0800; font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; padding: 3px 14px; border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .plan-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+  .plan-name { font-size: 18px; font-weight: 700; letter-spacing: 2px; color: var(--text-primary); }
+  .plan-period { font-size: 12px; color: var(--text-secondary); font-family: 'Share Tech Mono', monospace; letter-spacing: 1px; margin-top: 3px; }
+  .plan-price { text-align: right; }
+  .plan-amount { font-family: 'Share Tech Mono', monospace; font-size: 26px; font-weight: 700; color: var(--gold-light); }
+  .plan-currency { font-size: 13px; color: var(--text-secondary); }
+  .plan-save { font-size: 12px; color: var(--buy-color); letter-spacing: 1px; margin-top: 2px; }
+
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .plan-features li {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 15px; color: var(--text-secondary); letter-spacing: 1px;
+  }
+  .plan-features li .check { color: var(--buy-color); font-size: 16px; flex-shrink: 0; }
+  .plan-features li .lock { color: var(--text-secondary); font-size: 14px; opacity: 0.4; flex-shrink: 0; }
+
+  .free-features li { color: var(--text-secondary); opacity: 0.7; }
+
+  .btn-subscribe {
+    width: 100%; padding: 14px; margin-top: 20px;
+    background: linear-gradient(135deg, #B8962E, var(--gold), #C9A227);
+    border: none; border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif; font-size: 17px; font-weight: 700;
+    letter-spacing: 4px; color: #0A0800; cursor: pointer;
+    transition: opacity 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(212,175,55,0.3);
+  }
+  .btn-subscribe:hover { opacity: 0.9; box-shadow: 0 6px 28px rgba(212,175,55,0.45); }
+
+  .premium-member-badge {
+    width: 100%; padding: 14px; margin-top: 20px;
+    background: rgba(212,175,55,0.08);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700;
+    letter-spacing: 3px; color: var(--gold-light); text-align: center;
+    cursor: default;
+  }
+  .premium-member-badge .pm-icon { margin-right: 6px; }
+
+  .sub-note {
+    font-family: 'Share Tech Mono', monospace; font-size: 12px;
+    color: var(--text-secondary); text-align: center;
+    letter-spacing: 1px; opacity: 0.5; margin-top: 16px;
+  }
+
+  .plan-selector { display: flex; gap: 8px; margin-bottom: 20px; }
+  .plan-tab {
+    flex: 1; padding: 10px; background: var(--bg-input);
+    border: 1px solid var(--border); border-radius: 8px;
+    font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 600;
+    letter-spacing: 2px; color: var(--text-secondary); cursor: pointer;
+    transition: all 0.2s; text-align: center;
+  }
+  .plan-tab.active { border-color: var(--gold); color: var(--gold); background: rgba(212,175,55,0.05); }
+
+  .btn-copy-single {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent; border: 1px solid var(--border);
+    border-radius: 5px; cursor: pointer; color: var(--text-secondary);
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .btn-copy-single:hover { border-color: var(--gold-dim); color: var(--gold); background: rgba(212,175,55,0.05); }
+  .btn-copy-single.copied { border-color: rgba(34,197,94,0.4); color: var(--buy-color); background: rgba(34,197,94,0.05); }
+
+  .footer-note {
+    font-family: 'Share Tech Mono', monospace; font-size: 12px;
+    color: var(--text-secondary); text-align: center;
+    letter-spacing: 1px; opacity: 0.5; margin-top: 20px;
+  }
+
+  /* ── CALC TABS ── */
+  .calc-tabs {
+    display: flex; gap: 0; margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .calc-tab {
+    flex: 1; padding: 10px 0; background: none; border: none;
+    border-bottom: 2px solid transparent;
+    font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 2px; color: var(--text-secondary); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .calc-tab:hover { color: var(--gold-dim); }
+  .calc-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .calc-tab-panel { display: none; }
+  .calc-tab-panel.active { display: block; }
+
+  /* ── ASTRO CYCLE ── */
+  .astro-swing-type {
+    flex: 1; padding: 10px; background: var(--bg-input);
+    border: 1px solid var(--border); border-radius: 6px;
+    font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 2px; color: var(--text-secondary); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .astro-swing-type:hover { border-color: var(--gold-dim); color: var(--gold-dim); }
+  .astro-swing-type.active {
+    background: var(--gold-muted); border-color: var(--gold); color: var(--gold);
+  }
+  .astro-tf-group {
+    border: 1px solid var(--border); border-radius: 8px;
+    margin-bottom: 10px; overflow: hidden;
+  }
+  .astro-tf-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 16px; background: var(--gold-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .astro-tf-label {
+    font-size: 15px; font-weight: 700; letter-spacing: 3px; color: var(--gold);
+  }
+  .astro-tf-duration {
+    font-family: 'Share Tech Mono', monospace; font-size: 12px;
+    color: var(--text-secondary); letter-spacing: 1px;
+  }
+  .astro-tf-body { padding: 12px 16px; }
+  .astro-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.02);
+  }
+  .astro-row:last-child { border-bottom: none; }
+  .astro-row-label {
+    font-size: 13px; color: var(--text-secondary); letter-spacing: 1px;
+  }
+  .astro-row-value {
+    font-family: 'Share Tech Mono', monospace; font-size: 14px;
+    color: var(--text-primary);
+  }
+  .astro-row-value.target {
+    color: var(--gold-light); font-weight: 700; font-size: 15px;
+  }
+  .astro-swing-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace; font-size: 11px;
+    letter-spacing: 2px; margin-bottom: 16px;
+  }
+  .astro-swing-badge.high { background: rgba(239,68,68,0.1); color: var(--sell-color); border: 1px solid rgba(239,68,68,0.2); }
+  .astro-swing-badge.low  { background: rgba(34,197,94,0.1); color: var(--buy-color); border: 1px solid rgba(34,197,94,0.2); }
+
+  input[type="datetime-local"].input-field {
+    color-scheme: dark;
+  }
+  [data-theme="light"] input[type="datetime-local"].input-field {
+    color-scheme: light;
+  }
+
+  /* ── SWING LIST (live fetch results) ── */
+  .swing-list {
+    border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+  }
+  .swing-list-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; background: var(--gold-muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .swing-list-title {
+    font-size: 12px; font-weight: 700; letter-spacing: 2px;
+    color: var(--gold-dim); text-transform: uppercase;
+  }
+  .swing-list-count {
+    font-family: 'Share Tech Mono', monospace; font-size: 11px;
+    color: var(--text-secondary);
+  }
+  .swing-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.03);
+    cursor: pointer; transition: background 0.15s;
+  }
+  .swing-item:hover { background: var(--gold-muted); }
+  .swing-item:last-child { border-bottom: none; }
+  .swing-item-left { display: flex; align-items: center; gap: 10px; }
+  .swing-item-type {
+    font-family: 'Share Tech Mono', monospace; font-size: 10px;
+    font-weight: 700; letter-spacing: 1px; padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .swing-item-type.high { background: rgba(239,68,68,0.12); color: var(--sell-color); }
+  .swing-item-type.low  { background: rgba(34,197,94,0.12); color: var(--buy-color); }
+  .swing-item-price {
+    font-family: 'Share Tech Mono', monospace; font-size: 15px;
+    color: var(--text-primary); font-weight: 600;
+  }
+  .swing-item-time {
+    font-family: 'Share Tech Mono', monospace; font-size: 12px;
+    color: var(--text-secondary);
+  }
+  .swing-item-arrow {
+    color: var(--gold-dim); font-size: 14px; opacity: 0.5;
+  }
+  .swing-list-empty {
+    padding: 20px; text-align: center;
+    font-size: 13px; color: var(--text-secondary); letter-spacing: 1px;
+  }
+</style>
+<script src="/supabase.min.js"></script>
+</head>
+<body class="landing-mode">
+
+<!-- ── APP LOADER ── -->
+<div id="appLoader">
+  <div class="loader-bar-track"></div>
+  <div class="loader-text">Memverifikasi akses...</div>
+</div>
+
+<script>
+  // ── SYNCHRONOUS GUARD — runs before any page render ──
+  // Check localStorage for existing Supabase session
+  // If no session: hide loader immediately = guest sees landing instantly
+  // If session exists: loader stays visible until initAuth finishes
+  (function() {
+    var sbKey = 'sb-deqjvxsxovobpfisjyhg-auth-token';
+    if (!localStorage.getItem(sbKey)) {
+      var loader = document.getElementById('appLoader');
+      if (loader) {
+        loader.classList.add('hidden');
+        setTimeout(function(){ loader.style.display = 'none'; }, 400);
+      }
+    }
+    // else: session exists, loader stays visible
+  })();
+</script>
+
+<!-- Toast Container -->
+<div id="toastContainer"></div>
+
+<!-- Content Wrapper (for body flexbox) -->
+<div class="content-wrapper">
+
+<!-- ══════════════════════════════════ -->
+<!--          PAGE: CALCULATOR          -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="pageCalc">
+<div class="card">
+  <div class="card-top-line"></div>
+
+  <!-- User Info Badge (new shadcn style) -->
+  <div class="user-badge" id="userBadge">
+    <span class="user-badge-email" id="userEmail"></span>
+    <span class="user-badge-premium" id="premiumBadge" style="display:none;">PREMIUM</span>
+  </div>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">☀️</button>
+
+  <!-- Header -->
+  <div style="margin-bottom: 24px; padding-right: 40px;">
+    <div class="header-tag">GANN SQUARE OF 9</div>
+    <h1 class="main-title">
+      <span style="color:var(--gold-light);font-weight:700;">QUANTUM</span>
+      <span style="color:var(--text-secondary);font-weight:400;"> Leaps</span>
+    </h1>
+    <div style="font-size:15px;font-weight:600;letter-spacing:3px;color:var(--gold-dim);margin-top:2px;text-transform:uppercase;">Gann Square of 9</div>
+    <div class="subtitle">// XAUUSD PRICE PROJECTION</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Tab Navigation -->
+  <div class="calc-tabs">
+    <button class="calc-tab active" onclick="switchCalcTab('sq9')">SQUARE OF 9</button>
+    <button class="calc-tab" onclick="switchCalcTab('astro')">ASTRO CYCLE</button>
+  </div>
+
+  <!-- Tab: Square of 9 -->
+  <div class="calc-tab-panel active" id="tabSq9">
+
+  <!-- Inputs -->
+  <div style="display:flex; flex-direction:column; gap:18px; margin-bottom:20px;">
+    <div>
+      <div class="input-label high">
+        Swing High
+        <span style="margin-left:auto;font-size:11px;font-family:'Share Tech Mono',monospace;opacity:0.45;letter-spacing:1px;">OPTIONAL</span>
+      </div>
+      <input id="swingHigh" class="input-field" type="number" inputmode="decimal" step="any" placeholder="e.g. 2380.50" />
+      <div class="error-msg" id="errHigh">⚠ Enter a valid positive number</div>
+    </div>
+    <div>
+      <div class="input-label low">
+        Swing Low
+        <span style="margin-left:auto;font-size:11px;font-family:'Share Tech Mono',monospace;opacity:0.45;letter-spacing:1px;">OPTIONAL</span>
+      </div>
+      <input id="swingLow" class="input-field" type="number" inputmode="decimal" step="any" placeholder="e.g. 2340.00" />
+      <div class="error-msg" id="errLow">⚠ Enter a valid positive number</div>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <button class="btn-calc" id="btnCalc" onclick="calculate()">
+    <span class="btn-text">CALCULATE</span>
+    <span class="loading-dots">
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </span>
+  </button>
+  <button class="btn-reset" onclick="reset()">↺ &nbsp;RESET</button>
+  <button class="btn-premium" onclick="showPage('pageSub')" id="btnUpgrade">
+    ✦ &nbsp;UPGRADE TO PREMIUM
+  </button>
+  <a href="/tutorial.html" class="btn-premium" id="btnTutorial" onclick="return handleTutorialClick(event)" style="display:inline-block;text-decoration:none;background:#6B4F0A;text-align:center;">
+    TUTORIAL
+  </a>
+  <button class="btn-reset" onclick="handleLogout()" id="logoutBtn" style="display:none;">↗ &nbsp;LOGOUT</button>
+
+  <!-- Results -->
+  <div id="results" class="results-container">
+    <div class="divider"></div>
+    <div class="results-header">
+      <span class="results-label">// PROJECTION LEVELS</span>
+      <button class="btn-copy" id="btnCopy" onclick="copyResults()">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        COPY ALL
+      </button>
+    </div>
+
+    <div id="buyGroup" class="result-group" style="border:1px solid rgba(34,197,94,0.12);border-radius:8px;display:none;">
+      <div class="result-row buy">
+        <span class="result-name buy">BUY1</span>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="result-value" id="val-buy1">—</span>
+          <button class="btn-copy-single" onclick="copySingle('val-buy1','BUY1')">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="result-row buy">
+        <span class="result-name buy">BUY2</span>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="result-value" id="val-buy2">—</span>
+          <button class="btn-copy-single" onclick="copySingle('val-buy2','BUY2')">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="result-row buy">
+        <span class="result-name buy">BUY3</span>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="result-value" id="val-buy3">—</span>
+          <button class="btn-copy-single" onclick="copySingle('val-buy3','BUY3')">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="sellGroup" class="result-group" style="border:1px solid rgba(239,68,68,0.12);border-radius:8px;display:none;">
+      <div class="result-row sell">
+        <span class="result-name sell">SELL1</span>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="result-value" id="val-sell1">—</span>
+          <button class="btn-copy-single" onclick="copySingle('val-sell1','SELL1')">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="result-row sell">
+        <span class="result-name sell">SELL2</span>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="result-value" id="val-sell2">—</span>
+          <button class="btn-copy-single" onclick="copySingle('val-sell2','SELL2')">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="result-row sell">
+        <span class="result-name sell">SELL3</span>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="result-value" id="val-sell3">—</span>
+          <button class="btn-copy-single" onclick="copySingle('val-sell3','SELL3')">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">GANN SQUARE ROOT METHOD<br><span style="display:inline-block;margin-top:6px;">— NOT FINANCIAL ADVICE —</span></div>
+  </div><!-- close tabSq9 -->
+
+  <!-- Tab: Astro Cycle -->
+  <div class="calc-tab-panel" id="tabAstro">
+    <div style="margin-bottom:8px;">
+      <div class="header-tag" style="margin-bottom:8px;">GANN ASTRO CYCLE</div>
+      <div style="font-size:14px;color:var(--text-secondary);letter-spacing:0.5px;">Proyeksi swing berikutnya berdasarkan pola wave berulang.</div>
+    </div>
+
+    <div class="divider" style="margin:16px 0;"></div>
+
+    <!-- Live Fetch Helper -->
+    <div style="margin-bottom:20px;">
+      <div class="input-label" style="color:var(--gold);">
+        LIVE DATA
+        <span style="margin-left:auto;font-size:11px;font-family:'Share Tech Mono',monospace;opacity:0.45;letter-spacing:1px;">OPTIONAL HELPER</span>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <select id="astroFetchInterval" style="flex:0 0 auto;padding:10px 12px;background:var(--bg-input);border:1px solid var(--border);border-radius:6px;color:var(--text-primary);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;cursor:pointer;">
+          <option value="5m">M5</option>
+          <option value="15m" selected>M15</option>
+          <option value="30m">M30</option>
+          <option value="1h">H1</option>
+        </select>
+        <button class="btn-reset" id="btnFetchLive" onclick="fetchLiveCandles()" style="flex:1;margin:0;padding:10px;font-size:13px;letter-spacing:2px;border-color:var(--gold-dim);color:var(--gold);">
+          ⚡ FETCH SWINGS
+        </button>
+      </div>
+      <div id="swingListContainer" style="display:none;margin-top:12px;"></div>
+    </div>
+
+    <div class="divider" style="margin:16px 0;"></div>
+
+    <div style="display:flex; flex-direction:column; gap:18px; margin-bottom:20px;">
+      <div>
+        <div class="input-label" style="color:var(--gold);">
+          TIPE SWING
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="astro-swing-type active" id="astroTypeHigh" onclick="setAstroSwingType('high')">SWING HIGH</button>
+          <button class="astro-swing-type" id="astroTypeLow" onclick="setAstroSwingType('low')">SWING LOW</button>
+        </div>
+      </div>
+      <div>
+        <div class="input-label" style="color:var(--gold);">
+          WAKTU SWING TERJADI
+          <span style="margin-left:auto;font-size:11px;font-family:'Share Tech Mono',monospace;opacity:0.45;letter-spacing:1px;">LOCAL TIME</span>
+        </div>
+        <input id="astroDatetime" class="input-field" type="datetime-local" />
+        <div class="error-msg" id="errAstroDt">⚠ Pilih tanggal &amp; waktu swing</div>
+      </div>
+    </div>
+
+    <button class="btn-calc" id="btnAstroCalc" onclick="calculateAstroCycle()">
+      <span class="btn-text">PROYEKSI CYCLE</span>
+      <span class="loading-dots">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </span>
+    </button>
+    <button class="btn-reset" onclick="resetAstro()">↺ &nbsp;RESET</button>
+
+    <!-- Astro Results -->
+    <div id="astroResults" style="display:none;">
+      <div class="divider" style="margin:20px 0;"></div>
+      <div class="results-header">
+        <span class="results-label">// PROYEKSI GANN ASTRO CYCLE</span>
+        <button class="btn-copy" id="btnCopyAstro" onclick="copyAstroResults()">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          COPY ALL
+        </button>
+      </div>
+      <div id="astroSwingBadge"></div>
+      <div id="astroResultContent"></div>
+      <div class="footer-note" style="margin-top:16px;">
+        GANN ASTRO CYCLE — CYCLE REPETITION<br>
+        <span style="display:inline-block;margin-top:4px;font-size:11px;opacity:0.6;">Swing baru bisa terjadi ±1-2 bar dari target</span><br>
+        <span style="display:inline-block;margin-top:6px;">— NOT FINANCIAL ADVICE —</span>
+      </div>
+    </div>
+  </div><!-- close tabAstro -->
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!--         PAGE: SUBSCRIPTION         -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="pageSub">
+<div class="sub-card">
+
+  <button class="back-btn" onclick="showPage('pageCalc')">
+    ← &nbsp;BACK TO CALCULATOR
+  </button>
+
+  <div class="sub-header">
+    <div class="sub-tag">QUANTUM LEAPS PREMIUM</div>
+    <h2 class="sub-title">Upgrade Your Edge</h2>
+    <div class="sub-desc">Fitur eksklusif untuk trader serius</div>
+  </div>
+
+
+
+  <!-- ONE-TIME OFFER -->
+  <div class="plan-card popular">
+    <div class="popular-badge">✦ HARGA HARI INI</div>
+    <div class="plan-top">
+      <div>
+        <div class="plan-name" style="color:var(--gold-light);">PREMIUM ACCESS</div>
+        <div class="plan-period">Bayar sekali · akses selamanya</div>
+      </div>
+      <div class="plan-price">
+        <div class="plan-amount">Rp 500K</div>
+        <div class="plan-currency">one-time</div>
+      </div>
+    </div>
+    <ul class="plan-features">
+      <li><span class="check">✓</span> <strong>Multi-timeframe M1 & M5</strong></li>
+      <li><span class="check">✓</span> <strong>Confluence Detector</strong></li>
+      <li><span class="check">✓</span> Save History (localStorage)</li>
+      <li><span class="check">✓</span> Export PNG — share ke grup</li>
+      <li><span class="check">✓</span> Custom Offset (atur sendiri)</li>
+      <li><span class="check">✓</span> Priority support via WhatsApp</li>
+      <li><span class="check">✓</span> Semua update fitur selamanya</li>
+    </ul>
+    <button class="btn-subscribe" id="btnSubscribe" onclick="handleSubscribe('lifetime')">
+      BELI SEKARANG
+    </button>
+    <div class="premium-member-badge" id="premiumMemberBadge" style="display:none;">
+      <span class="pm-icon">✦</span> PREMIUM MEMBER
+    </div>
+  </div>
+
+  <div class="sub-note">Hubungi kami untuk info pembayaran & aktivasi akun</div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════ -->
+<!--          PAGE: LANDING             -->
+<!-- ══════════════════════════════════ -->
+<div class="page page-landing active" id="pageLanding">
+<!-- ── NAV ── -->
+<nav>
+  <div class="container">
+    <div class="logo">QUANTUM <span>Leaps</span></div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button id="landingThemeToggle" onclick="landingToggleTheme()" style="width:36px;height:36px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all 0.2s;" title="Toggle theme">☀️</button>
+      <a href="#" class="nav-cta" onclick="landingHandleAccess(event)">✦ PREMIUM</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-badge">Gann Square of 9 &mdash; XAUUSD</div>
+    <h1 class="hero-title">
+      Prediksi <em>Turning Point</em><br>Emas dengan Presisi
+    </h1>
+    <p class="hero-sub">
+      Tools khusus XAUUSD untuk trader yang serius. Hitung level support &amp; resistance harian
+      menggunakan rumus geometric geometry yang digunakan trader profesional sejak puluhan tahun.
+    </p>
+    <a href="#" class="hero-cta" onclick="landingHandleAccess(event)">✦ GET PREMIUM ACCESS &mdash; Rp 500.000</a>
+    <p class="hero-note">Sekali bayar, akses seumur hidup. Tidak ada free tier.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── WHY ── -->
+<section>
+  <div class="container">
+    <div class="section-label">Kenapa Quantum Leaps</div>
+    <h2 class="sec-title">Untuk trader yang serius &mdash; bukan untuk coba-coba.</h2>
+    <p class="sec-sub">Kami membuat tools ini untuk satu tujuan: membantu trader gold mendapatkan proyeksi level matematis yang konsisten.</p>
+
+    <ul class="feature-list">
+      <li>
+        <div class="feature-marker"></div>
+        <div class="feature-content">
+          <h3>Math-Based Accuracy</h3>
+          <p>Rumus Gann Square of 9 yang teruji — setiap hitungan konsisten, bisa diverifikasi ulang.</p>
+        </div>
+      </li>
+      <li>
+        <div class="feature-marker"></div>
+        <div class="feature-content">
+          <h3>XAUUSD Specific</h3>
+          <p>Dikalkulasi khusus untuk gold, bukan generic indicator yang dipaksakan untuk semua pair.</p>
+        </div>
+      </li>
+      <li>
+        <div class="feature-marker"></div>
+        <div class="feature-content">
+          <h3>No Limits, No Ads</h3>
+          <p>Bayar sekali — akses premium penuh tanpa batas hitungan, tanpa iklan, tanpa hidden fee.</p>
+        </div>
+      </li>
+      <li>
+        <div class="feature-marker"></div>
+        <div class="feature-content">
+          <h3>PWA — Akses dari Mana Saja</h3>
+          <p>Bisa dipasang di home screen HP, jalan offline, ringan di perangkat mana pun.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── HOW IT WORKS ── -->
+<section>
+  <div class="container">
+    <div class="section-label">Cara Kerja</div>
+    <h2 class="sec-title">Dari pendaftaran ke proyeksi dalam 2 menit.</h2>
+    <p class="sec-sub">Proses sederhana, langsung bisa dipakai.</p>
+
+    <ol class="steps">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Login</h3>
+          <p>Daftar dengan Google OAuth — 10 detik, tanpa verifikasi email berulang.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Upgrade</h3>
+          <p>Bayar Rp 500.000 via QRIS (GoPay, OVO, Dana, Mobile Banking) — proses instan.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Akses</h3>
+          <p>Calculator premium langsung terbuka setelah pembayaran diverifikasi.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Trade</h3>
+          <p>Input swing high / swing low — dapatkan level proyeksi support &amp; resistance harian.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── DEMO VIDEO ── -->
+<section>
+  <div class="container">
+    <div class="section-label">Lihat Cara Kerja</div>
+    <h2 class="sec-title" style="text-align:center;">Pahami kalkulator dalam 45 detik.</h2>
+    <p class="sec-sub" style="text-align:center;">Demo singkat fitur utama — tonton sebelum upgrade.</p>
+
+    <div class="demo-video-wrapper">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/uxLdBvYZ3cc?rel=0"
+        title="Pengenalan Quantum Leaps"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <p class="demo-tutorial-link">
+      <a href="/tutorial">→ Lihat semua tutorial (2 gratis, 5 untuk member)</a>
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PRICING ── -->
+<section>
+  <div class="container">
+    <div class="section-label">Harga</div>
+    <h2 class="sec-title" style="text-align:center;">Satu harga. Akses penuh. Selamanya.</h2>
+    <p class="sec-sub" style="text-align:center;">Tidak ada tingkatan, tidak ada upsell, tidak ada biaya bulanan.</p>
+
+    <div class="pricing-card">
+      <div class="pricing-plan">Lifetime</div>
+      <div class="pricing-price">Rp 500.000</div>
+      <p class="pricing-note">Sekali bayar, akses seumur hidup</p>
+
+      <ul class="pricing-features">
+        <li>Unlimited Gann Square of 9 calculations</li>
+        <li>Level support &amp; resistance harian</li>
+        <li>Akses dari HP &amp; laptop (PWA)</li>
+        <li>Update gratis selamanya</li>
+        <li>Tidak ada biaya bulanan</li>
+      </ul>
+
+      <a href="#" class="pricing-cta" onclick="landingHandleAccess(event)">✦ GET PREMIUM ACCESS</a>
+      <p class="pricing-payment">Pembayaran via QRIS — GoPay, OVO, Dana, Mobile Banking</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── FAQ ── -->
+<section>
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="sec-title">Pertanyaan yang sering diajukan.</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Ada versi gratis?</div>
+      <div class="faq-a">Tidak. QUANTUM Leaps adalah tools premium untuk trader yang serius. Tidak ada trial, tidak ada free tier — langsung full akses. Kami percaya kalau tools ini berguna, pengguna tidak perlu trial untuk membuktikannya.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Kalau tidak puas?</div>
+      <div class="faq-a">Silakan hubungi kami. Setiap pembelian dievaluasi kasus per kasus. Keputusan refund sepenuhnya di kebijakan kami — tapi kami selalu berusaha yang terbaik untuk pengguna.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Apakah hasil selalu akurat?</div>
+      <div class="faq-a">Gann Square of 9 adalah metode matematis yang sudah digunakan trader profesional sejak puluhan tahun. Hasilnya berupa proyeksi level — gunakan sebagai referensi entry, bukan jaminan profit. Trading tetap butuh analisis Anda sendiri.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Bayar pakai apa?</div>
+      <div class="faq-a">QRIS — bisa pakai GoPay, OVO, Dana, atau Mobile Banking. Proses instan, akun aktif otomatis begitu pembayaran terverifikasi oleh sistem.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Lifetime itu benar-benar selamanya?</div>
+      <div class="faq-a">Ya. Sekali bayar Rp 500.000 — akses tidak terbatas, termasuk update fitur di masa depan. Tidak ada perpanjangan, tidak ada subscription.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Gimana cara daftar dan mulai?</div>
+      <div class="faq-a">Klik tombol "Get Premium Access" di atas → login dengan Google → bayar QRIS → langsung bisa pakai calculator. Total waktu: kurang dari 2 menit.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="logo">QUANTUM <span>Leaps</span></div>
+    <div class="links">
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <p class="copyright">&copy; 2026 Quantum Leaps. Khusus XAUUSD &mdash; Dibuat untuk trader emas Indonesia.</p>
+  </div>
+</footer>
+
+</div>
+
+<script>
+  // ── THEME — follow system, override via toggle ──
+  function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  let currentTheme = localStorage.getItem('ql-theme') || getSystemTheme();
+  applyTheme(currentTheme);
+
+  // Listen for system theme changes when no manual override
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
+    if (!localStorage.getItem('ql-theme')) {
+      applyTheme(e.matches ? 'light' : 'dark');
+    }
+  });
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+    currentTheme = theme;
+    localStorage.setItem('ql-theme', theme);
+    syncLandingThemeIcon();
+  }
+
+  function toggleTheme() {
+    const next = currentTheme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+  }
+
+  // ── HIDE LOADER ──
+  function hideLoader() {
+    var el = document.getElementById('appLoader');
+    if (el && !el.classList.contains('hidden')) {
+      el.classList.add('hidden');
+      setTimeout(function(){ el.style.display = 'none'; }, 400);
+    }
+  }
+
+  // ── PAGES ──
+  function showPage(id) {
+    hideLoader();
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.body.classList.toggle('landing-mode', id === 'pageLanding');
+    window.scrollTo(0, 0);
+  }
+
+  // ── LANDING PAGE THEME ──
+  function landingToggleTheme() {
+    toggleTheme();
+    // Sync landing toggle button icon
+    const landBtn = document.getElementById('landingThemeToggle');
+    if (landBtn) landBtn.textContent = document.getElementById('themeToggle').textContent;
+  }
+
+  // Sync landing theme toggle icon on theme change
+  function syncLandingThemeIcon() {
+    const landBtn = document.getElementById('landingThemeToggle');
+    const mainBtn = document.getElementById('themeToggle');
+    if (landBtn && mainBtn) landBtn.textContent = mainBtn.textContent;
+  }
+
+  // ── LANDING CTA — triggers auth → premium flow ──
+  async function landingHandleAccess(e) {
+    e.preventDefault();
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+      showAuthModal();
+      return;
+    }
+    const premium = await isPremium();
+    if (premium) {
+      showPage('pageCalc');
+    } else {
+      showPage('pageSub');
+    }
+  }
+
+  // ── Update landing nav CTA based on login state ──
+  async function updateLandingNav() {
+    const navCta = document.querySelector('.page-landing .nav-cta');
+    if (!navCta) return;
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (session) {
+      const premium = await isPremium();
+      if (premium) {
+        navCta.textContent = '✦ KALKULATOR';
+        navCta.onclick = function(e) { e.preventDefault(); showPage('pageCalc'); };
+      } else {
+        navCta.textContent = '✦ UPGRADE';
+        navCta.onclick = landingHandleAccess;
+      }
+    } else {
+      navCta.textContent = '✦ PREMIUM';
+      navCta.onclick = landingHandleAccess;
+    }
+  }
+
+  // Global variable for auth state
+  let currentUser = null;
+  let currentAuthTab = 'login';
+
+  // ── PREMIUM CHECK ──
+  async function isPremium() {
+    // Require authenticated Supabase session
+    const sessionPromise = supabaseClient.auth.getSession();
+    const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000));
+
+    let session;
+    try {
+      const { data } = await Promise.race([sessionPromise, timeoutPromise]);
+      session = data?.session;
+    } catch {
+      return false;
+    }
+
+    if (!session) return false;
+
+    try {
+      const res = await fetch('/api/subscription/check', {
+        headers: { 'Authorization': `Bearer ${session.access_token}` },
+        signal: AbortSignal.timeout(5000)
+      });
+      const data = await res.json();
+      return data.premium || false;
+    } catch {
+      return false;
+    }
+  }
+
+  async function updatePremiumButton() {
+    const btnUpgrade = document.getElementById('btnUpgrade');
+    const btnSubscribe = document.getElementById('btnSubscribe');
+    const badge = document.getElementById('premiumMemberBadge');
+    const premium = await isPremium();
+    if (btnUpgrade) btnUpgrade.style.display = premium ? 'none' : 'block';
+    if (btnSubscribe) btnSubscribe.style.display = premium ? 'none' : 'block';
+    if (badge) badge.style.display = premium ? 'block' : 'none';
+  }
+
+  async function handleTutorialClick(e) {
+    const premium = await isPremium();
+    if (!premium) {
+      e.preventDefault();
+      showPage('pageSub');
+      return false;
+    }
+    return true;
+  }
+
+  // ── TOAST NOTIFICATION SYSTEM ──
+  function showToast(message, type = 'info', title = '') {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+
+    const icons = {
+      success: '✓',
+      error: '✗',
+      warning: '⚠',
+      info: 'ℹ'
+    };
+
+    const titles = {
+      success: title || 'SUCCESS',
+      error: title || 'ERROR',
+      warning: title || 'WARNING',
+      info: title || 'INFO'
+    };
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+      <div class="toast-icon">${icons[type] || icons.info}</div>
+      <div class="toast-content">
+        <div class="toast-title">${titles[type]}</div>
+        <div class="toast-message">${message}</div>
+      </div>
+    `;
+
+    container.appendChild(toast);
+
+    // Auto-remove after 4 seconds
+    setTimeout(() => {
+      toast.classList.add('removing');
+      setTimeout(() => toast.remove(), 250);
+    }, 4000);
+
+    // Click to dismiss
+    toast.addEventListener('click', () => {
+      toast.classList.add('removing');
+      setTimeout(() => toast.remove(), 250);
+    });
+  }
+
+  async function checkPremiumAccess() {
+    // Require Supabase auth session
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+      showAuthModal();
+      return false;
+    }
+
+    const premium = await isPremium();
+    if (!premium) {
+      showToast('Upgrade ke Premium untuk akses penuh', 'warning', 'PREMIUM REQUIRED');
+      showPage('pageSub');
+      return false;
+    }
+    return true;
+  }
+
+  // ── SUBSCRIBE ──
+  async function handleSubscribe(plan) {
+    // Require authenticated session — no email prompt fallback
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+      showToast('Login dulu sebelum subscribe', 'warning', 'LOGIN REQUIRED');
+      showAuthModal();
+      return;
+    }
+    // ── PAID PLANS: route through Pakasir ──
+    try {
+      const res = await fetch('/api/pakasir/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`
+        },
+        body: JSON.stringify({ plan })
+      });
+      const data = await res.json();
+
+      if (data.checkoutUrl) {
+        // Redirect to payment page
+        window.location.href = data.checkoutUrl;
+      } else {
+        showToast(data.error || 'Gagal membuat link pembayaran', 'error', 'PAYMENT ERROR');
+      }
+    } catch (err) {
+      showToast('Tidak bisa menghubungi server pembayaran', 'error', 'CONNECTION ERROR');
+      console.error(err);
+    }
+  }
+
+  // ── CALCULATOR ──
+  function isValidInput(el, errEl) {
+    const val = parseFloat(el.value);
+    if (el.value.trim() !== '' && (isNaN(val) || val <= 0)) {
+      el.classList.add('error'); errEl.style.display = 'block'; return false;
+    }
+    el.classList.remove('error'); errEl.style.display = 'none'; return true;
+  }
+
+  async function calculate() {
+    // Check Supabase session directly (tidak rely pada localStorage)
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+      const modal = document.getElementById('authModal');
+      if (modal) modal.style.display = 'flex';
+      return;
+    }
+
+    // Check premium status
+    const premium = await isPremium();
+    if (!premium) {
+      showToast('Upgrade ke Premium untuk akses penuh', 'warning', 'PREMIUM REQUIRED');
+      showPage('pageSub');
+      return;
+    }
+    
+    const highEl  = document.getElementById('swingHigh');
+    const lowEl   = document.getElementById('swingLow');
+    const errHigh = document.getElementById('errHigh');
+    const errLow  = document.getElementById('errLow');
+    const btn     = document.getElementById('btnCalc');
+    const results = document.getElementById('results');
+
+    if (!isValidInput(highEl, errHigh) || !isValidInput(lowEl, errLow)) return;
+
+    const hasHigh = highEl.value.trim() !== '';
+    const hasLow  = lowEl.value.trim() !== '';
+
+    if (!hasHigh && !hasLow) {
+      [highEl, lowEl].forEach(el => el.classList.add('error'));
+      errHigh.textContent = errLow.textContent = '⚠ Fill at least one field';
+      errHigh.style.display = errLow.style.display = 'block';
+      return;
+    }
+
+    errHigh.textContent = errLow.textContent = '⚠ Enter a valid positive number';
+    btn.classList.add('loading'); btn.disabled = true;
+    results.classList.remove('show');
+
+    setTimeout(() => {
+      const buyGroup  = document.getElementById('buyGroup');
+      const sellGroup = document.getElementById('sellGroup');
+
+      if (hasHigh) {
+        const high = parseFloat(highEl.value);
+        document.getElementById('val-buy1').textContent = Math.pow(Math.sqrt(high) - 0.125, 2).toFixed(2);
+        document.getElementById('val-buy2').textContent = Math.pow(Math.sqrt(high) - 0.175, 2).toFixed(2);
+        document.getElementById('val-buy3').textContent = Math.pow(Math.sqrt(high) - 0.250, 2).toFixed(2);
+        buyGroup.style.display = 'block';
+      } else { buyGroup.style.display = 'none'; }
+
+      if (hasLow) {
+        const low = parseFloat(lowEl.value);
+        document.getElementById('val-sell1').textContent = Math.pow(Math.sqrt(low) + 0.125, 2).toFixed(2);
+        document.getElementById('val-sell2').textContent = Math.pow(Math.sqrt(low) + 0.175, 2).toFixed(2);
+        document.getElementById('val-sell3').textContent = Math.pow(Math.sqrt(low) + 0.250, 2).toFixed(2);
+        sellGroup.style.display = 'block';
+      } else { sellGroup.style.display = 'none'; }
+
+      btn.classList.remove('loading'); btn.disabled = false;
+      results.classList.add('show');
+    }, 600);
+  }
+
+  function reset() {
+    ['swingHigh','swingLow'].forEach(id => {
+      const el = document.getElementById(id);
+      el.value = ''; el.classList.remove('error');
+    });
+    document.getElementById('errHigh').style.display = 'none';
+    document.getElementById('errLow').style.display  = 'none';
+    document.getElementById('results').classList.remove('show');
+    document.getElementById('buyGroup').style.display  = 'none';
+    document.getElementById('sellGroup').style.display = 'none';
+    ['val-buy1','val-buy2','val-sell1','val-sell2'].forEach(id => {
+      document.getElementById(id).textContent = '—';
+    });
+  }
+
+  function copyResults() {
+    const high = document.getElementById('swingHigh').value;
+    const low  = document.getElementById('swingLow').value;
+    const b1 = document.getElementById('val-buy1').textContent;
+    const b2 = document.getElementById('val-buy2').textContent;
+    const b3 = document.getElementById('val-buy3').textContent;
+    const s1 = document.getElementById('val-sell1').textContent;
+    const s2 = document.getElementById('val-sell2').textContent;
+    const s3 = document.getElementById('val-sell3').textContent;
+
+    let lines = ['QUANTUM Leaps — Gann Square of 9','XAUUSD Price Projection','───────────────────────'];
+    if (high) lines.push(`Swing High : ${high}`);
+    if (low)  lines.push(`Swing Low  : ${low}`);
+    lines.push('');
+    if (high) { lines.push('BUY LEVELS'); lines.push(`BUY1  : ${b1}`); lines.push(`BUY2  : ${b2}`); lines.push(`BUY3  : ${b3}`); lines.push(''); }
+    if (low)  { lines.push('SELL LEVELS'); lines.push(`SELL1 : ${s1}`); lines.push(`SELL2 : ${s2}`); lines.push(`SELL3 : ${s3}`); lines.push(''); }
+    lines.push('───────────────────────');
+
+    navigator.clipboard.writeText(lines.join('\n')).then(() => {
+      const btn = document.getElementById('btnCopy');
+      btn.classList.add('copied');
+      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> COPIED`;
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> COPY`;
+      }, 2000);
+    });
+  }
+
+  function copySingle(valId, label) {
+    const val = document.getElementById(valId).textContent;
+    if (val === '—') return;
+    navigator.clipboard.writeText(val).then(() => {
+      const btns = document.querySelectorAll('.btn-copy-single');
+      // find the button next to this value
+      const valEl = document.getElementById(valId);
+      const btn = valEl.parentElement.querySelector('.btn-copy-single');
+      if (!btn) return;
+      btn.classList.add('copied');
+      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>`;
+      }, 1500);
+    });
+  }
+
+  // ── TAB SWITCHING ──
+  function switchCalcTab(tab) {
+    document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.calc-tab-panel').forEach(p => p.classList.remove('active'));
+    if (tab === 'sq9') {
+      document.querySelectorAll('.calc-tab')[0].classList.add('active');
+      document.getElementById('tabSq9').classList.add('active');
+    } else {
+      document.querySelectorAll('.calc-tab')[1].classList.add('active');
+      document.getElementById('tabAstro').classList.add('active');
+    }
+  }
+
+  // ── ASTRO CYCLE ──
+  let astroSwingType = 'high';
+
+  function setAstroSwingType(type) {
+    astroSwingType = type;
+    document.getElementById('astroTypeHigh').classList.toggle('active', type === 'high');
+    document.getElementById('astroTypeLow').classList.toggle('active', type === 'low');
+  }
+
+  function astroFmtDateTime(dt) {
+    const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+    const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+    return days[dt.getDay()] + ', ' + dt.getDate() + ' ' + months[dt.getMonth()] + ' ' + dt.getFullYear()
+      + ' — ' + String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+  }
+
+  function astroFmtShort(dt) {
+    const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+    return dt.getDate() + ' ' + months[dt.getMonth()] + ' ' + String(dt.getHours()).padStart(2,'0') + ':' + String(dt.getMinutes()).padStart(2,'0');
+  }
+
+  async function calculateAstroCycle() {
+    // Auth + premium gate
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+      const modal = document.getElementById('authModal');
+      if (modal) modal.style.display = 'flex';
+      return;
+    }
+    const premium = await isPremium();
+    if (!premium) {
+      showToast('Upgrade ke Premium untuk akses penuh', 'warning', 'PREMIUM REQUIRED');
+      showPage('pageSub');
+      return;
+    }
+
+    const dtInput = document.getElementById('astroDatetime');
+    const errDt   = document.getElementById('errAstroDt');
+    const btn     = document.getElementById('btnAstroCalc');
+
+    if (!dtInput.value) { errDt.style.display = 'block'; return; }
+    errDt.style.display = 'none';
+
+    const swingTime = new Date(dtInput.value);
+    if (isNaN(swingTime.getTime())) { errDt.style.display = 'block'; return; }
+
+    btn.classList.add('loading'); btn.disabled = true;
+
+    setTimeout(() => {
+      const tfs = [
+        { label: 'M5',  min: 5,  dur: '12 jam' },
+        { label: 'M15', min: 15, dur: '36 jam (1.5 hari)' },
+        { label: 'M30', min: 30, dur: '3 hari' },
+        { label: 'H1',  min: 60, dur: '6 hari' }
+      ];
+
+      let html = '';
+      tfs.forEach(tf => {
+        const barMs    = 144 * tf.min * 60000;
+        const target   = new Date(swingTime.getTime() + barMs);
+        const tolMs    = 2 * tf.min * 60000;
+        const winStart = new Date(target.getTime() - tolMs);
+        const winEnd   = new Date(target.getTime() + tolMs);
+        const bar142   = new Date(swingTime.getTime() + 142 * tf.min * 60000);
+        const bar146   = new Date(swingTime.getTime() + 146 * tf.min * 60000);
+
+        html += '<div class="astro-tf-group">'
+          + '<div class="astro-tf-header">'
+          + '<span class="astro-tf-label">' + tf.label + '</span>'
+          + '<span class="astro-tf-duration">Durasi: ' + tf.dur + '</span>'
+          + '</div><div class="astro-tf-body">'
+          + '<div class="astro-row"><span class="astro-row-label">TARGET</span><span class="astro-row-value target">' + astroFmtDateTime(target) + '</span></div>'
+          + '<div class="astro-row"><span class="astro-row-label">WINDOW (±2 bars)</span><span class="astro-row-value">' + astroFmtShort(winStart) + ' — ' + astroFmtShort(winEnd) + '</span></div>'
+          + '<div class="astro-row"><span class="astro-row-label">EARLY WINDOW</span><span class="astro-row-value">' + astroFmtShort(bar142) + '</span></div>'
+          + '<div class="astro-row"><span class="astro-row-label">LATE WINDOW</span><span class="astro-row-value">' + astroFmtShort(bar146) + '</span></div>'
+          + '</div></div>';
+      });
+
+      const badgeClass = astroSwingType === 'high' ? 'high' : 'low';
+      const badgeLabel = astroSwingType === 'high' ? 'SWING HIGH' : 'SWING LOW';
+      document.getElementById('astroSwingBadge').innerHTML =
+        '<span class="astro-swing-badge ' + badgeClass + '">' + badgeLabel + ' — ' + astroFmtDateTime(swingTime) + '</span>';
+
+      document.getElementById('astroResultContent').innerHTML = html;
+      document.getElementById('astroResults').style.display = 'block';
+      btn.classList.remove('loading'); btn.disabled = false;
+    }, 500);
+  }
+
+  function resetAstro() {
+    document.getElementById('astroDatetime').value = '';
+    document.getElementById('errAstroDt').style.display = 'none';
+    document.getElementById('astroResults').style.display = 'none';
+    document.getElementById('astroResultContent').innerHTML = '';
+    document.getElementById('astroSwingBadge').innerHTML = '';
+  }
+
+  function copyAstroResults() {
+    const swingTime = new Date(document.getElementById('astroDatetime').value);
+    const swingLabel = astroSwingType === 'high' ? 'SWING HIGH' : 'SWING LOW';
+    const tfs = [
+      { label: 'M5',  min: 5,  dur: '12 jam' },
+      { label: 'M15', min: 15, dur: '36 jam' },
+      { label: 'M30', min: 30, dur: '3 hari' },
+      { label: 'H1',  min: 60, dur: '6 hari' }
+    ];
+    let lines = [
+      'QUANTUM Leaps — Gann Astro Cycle',
+      'Cycle Repetition Projection',
+      '───────────────────────',
+      'Swing : ' + swingLabel,
+      'Waktu : ' + astroFmtDateTime(swingTime),
+      ''
+    ];
+    tfs.forEach(tf => {
+      const target = new Date(swingTime.getTime() + 144 * tf.min * 60000);
+      const tol    = 2 * tf.min * 60000;
+      lines.push('[' + tf.label + '] Durasi: ' + tf.dur);
+      lines.push('TARGET  : ' + astroFmtDateTime(target));
+      lines.push('WINDOW  : ' + astroFmtShort(new Date(target.getTime() - tol)) + ' — ' + astroFmtShort(new Date(target.getTime() + tol)));
+      lines.push('');
+    });
+    lines.push('───────────────────────');
+    lines.push('Swing baru ±1-2 bar dari target');
+
+    navigator.clipboard.writeText(lines.join('\n')).then(() => {
+      const btn = document.getElementById('btnCopyAstro');
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> COPIED';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> COPY';
+      }, 2000);
+    });
+  }
+
+  // Expose to global
+  window.switchCalcTab = switchCalcTab;
+  window.setAstroSwingType = setAstroSwingType;
+  window.calculateAstroCycle = calculateAstroCycle;
+  window.resetAstro = resetAstro;
+  window.copyAstroResults = copyAstroResults;
+
+  // ── LIVE FETCH + SWING DETECTION ──
+  // Detect pivot swings from OHLC candle array
+  // lookback=3 means: candle[i] is swing high if its high > high of 3 candles before AND 3 after
+  function detectSwings(candles, lookback) {
+    lookback = lookback || 3;
+    var swings = [];
+    for (var i = lookback; i < candles.length - lookback; i++) {
+      var c = candles[i];
+      var isHigh = true, isLow = true;
+      for (var j = 1; j <= lookback; j++) {
+        if (candles[i - j].high >= c.high || candles[i + j].high >= c.high) isHigh = false;
+        if (candles[i - j].low <= c.low || candles[i + j].low <= c.low) isLow = false;
+      }
+      if (isHigh) swings.push({ type: 'high', price: c.high, time: c.time, timeISO: c.timeISO, index: i });
+      if (isLow)  swings.push({ type: 'low',  price: c.low,  time: c.time, timeISO: c.timeISO, index: i });
+    }
+    // Sort by time descending (most recent first)
+    swings.sort(function(a, b) { return b.time - a.time; });
+    return swings;
+  }
+
+  function fmtSwingTime(ms) {
+    var d = new Date(ms);
+    var months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+    var days = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+    return days[d.getDay()] + ', ' + d.getDate() + ' ' + months[d.getMonth()]
+      + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+  }
+
+  function toLocalDatetimeStr(ms) {
+    var d = new Date(ms);
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0')
+      + 'T' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+  }
+
+  async function fetchLiveCandles() {
+    var btn = document.getElementById('btnFetchLive');
+    var interval = document.getElementById('astroFetchInterval').value;
+    var container = document.getElementById('swingListContainer');
+
+    btn.disabled = true;
+    btn.textContent = '⏳ FETCHING...';
+    container.style.display = 'none';
+
+    try {
+      // Determine lookback based on interval
+      var lookback = interval === '5m' ? 3 : interval === '15m' ? 3 : interval === '30m' ? 4 : 5;
+
+      var resp = await fetch('/api/candles?interval=' + interval + '&limit=200');
+      if (!resp.ok) throw new Error('API returned ' + resp.status);
+      var data = await resp.json();
+
+      if (!data.candles || data.candles.length < 20) {
+        container.innerHTML = '<div class="swing-list"><div class="swing-list-empty">Data tidak cukup untuk deteksi swing</div></div>';
+        container.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = '⚡ FETCH SWINGS';
+        return;
+      }
+
+      var swings = detectSwings(data.candles, lookback);
+
+      if (swings.length === 0) {
+        container.innerHTML = '<div class="swing-list"><div class="swing-list-empty">Tidak ada swing terdeteksi. Coba interval lain.</div></div>';
+        container.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = '⚡ FETCH SWINGS';
+        return;
+      }
+
+      // Limit to 10 most recent
+      var recent = swings.slice(0, 10);
+      var intervalLabel = interval.toUpperCase();
+
+      var html = '<div class="swing-list">';
+      html += '<div class="swing-list-header">';
+      html += '<span class="swing-list-title">DETECTED SWINGS — ' + intervalLabel + '</span>';
+      html += '<span class="swing-list-count">' + recent.length + ' found</span>';
+      html += '</div>';
+
+      recent.forEach(function(s, idx) {
+        html += '<div class="swing-item" onclick="pickSwing(' + s.time + ',\'' + s.type + '\',' + s.price + ')">';
+        html += '<div class="swing-item-left">';
+        html += '<span class="swing-item-type ' + s.type + '">' + (s.type === 'high' ? 'HIGH' : 'LOW') + '</span>';
+        html += '<span class="swing-item-price">' + s.price.toFixed(2) + '</span>';
+        html += '</div>';
+        html += '<div style="display:flex;align-items:center;gap:10px;">';
+        html += '<span class="swing-item-time">' + fmtSwingTime(s.time) + '</span>';
+        html += '<span class="swing-item-arrow">›</span>';
+        html += '</div>';
+        html += '</div>';
+      });
+
+      html += '</div>';
+      container.innerHTML = html;
+      container.style.display = 'block';
+
+      showToast('Ditemukan ' + swings.length + ' swing di ' + intervalLabel, 'success', 'SWINGS DETECTED');
+    } catch (err) {
+      showToast('Gagal fetch data: ' + err.message, 'error', 'FETCH ERROR');
+      console.error('Fetch candles error:', err);
+    }
+
+    btn.disabled = false;
+    btn.textContent = '⚡ FETCH SWINGS';
+  }
+
+  // User picks a swing from the list → auto-fill datetime + type
+  function pickSwing(timeMs, type, price) {
+    // Set datetime
+    document.getElementById('astroDatetime').value = toLocalDatetimeStr(timeMs);
+    // Set swing type
+    setAstroSwingType(type);
+    // Visual feedback
+    showToast((type === 'high' ? 'SWING HIGH' : 'SWING LOW') + ' ' + price.toFixed(2) + ' dipilih', 'success', 'SWING SELECTED');
+    // Hide swing list
+    document.getElementById('swingListContainer').style.display = 'none';
+  }
+
+  window.fetchLiveCandles = fetchLiveCandles;
+  window.pickSwing = pickSwing;
+</script>
+
+<!-- Auth Modal -->
+<div id="authModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:var(--modal-overlay);backdrop-filter:blur(8px);z-index:9999;align-items:center;justify-content:center;">
+  <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:16px;max-width:420px;width:92%;box-shadow:0 24px 80px rgba(0,0,0,0.6);overflow:hidden;">
+
+    <!-- Header -->
+    <div style="padding:32px 32px 0;text-align:center;">
+      <div style="font-family:'Cinzel',serif;font-size:24px;letter-spacing:4px;color:var(--gold);margin-bottom:4px;">QUANTUM LEAPS</div>
+      <div style="font-size:14px;letter-spacing:3px;color:var(--text-dim);text-transform:uppercase;margin-bottom:28px;">Gann Square of 9</div>
+      <!-- Tab switcher -->
+      <div style="display:flex;background:var(--gold-muted);border-radius:8px;padding:4px;margin-bottom:28px;">
+        <button id="tabLogin" onclick="switchAuthTab('login')" style="flex:1;padding:10px;border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:15px;letter-spacing:2px;font-weight:600;cursor:pointer;transition:all 0.2s;background:var(--gold);color:#080A0D;">LOGIN</button>
+        <button id="tabSignup" onclick="switchAuthTab('signup')" style="flex:1;padding:10px;border:none;border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:15px;letter-spacing:2px;font-weight:600;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--text-dim);">SIGN UP</button>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div style="padding:0 32px 32px;">
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-size:13px;letter-spacing:2px;color:var(--text-dim);margin-bottom:8px;">EMAIL</label>
+        <input type="email" id="authEmail" placeholder="trader@email.com"
+          style="width:100%;padding:15px 18px;background:var(--gold-muted);border:1px solid var(--border);color:var(--text);border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:17px;box-sizing:border-box;outline:none;transition:border 0.2s;"
+          onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor=''">
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="display:block;font-size:13px;letter-spacing:2px;color:var(--text-dim);margin-bottom:8px;">PASSWORD</label>
+        <input type="password" id="authPassword" placeholder="Min 6 karakter"
+          style="width:100%;padding:15px 18px;background:var(--gold-muted);border:1px solid var(--border);color:var(--text);border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:17px;box-sizing:border-box;outline:none;transition:border 0.2s;"
+          onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor=''">
+      </div>
+
+      <button id="btnAuthSubmit" onclick="handleAuth(currentAuthTab)"
+        style="width:100%;padding:17px;background:linear-gradient(135deg,#D4AF37,#F0D060);color:#080A0D;border:none;border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:16px;letter-spacing:3px;font-weight:700;cursor:pointer;transition:opacity 0.2s;margin-bottom:16px;"
+        onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">LOGIN</button>
+
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="flex:1;height:1px;background:rgba(212,175,55,0.15);"></div>
+        <span style="font-size:14px;color:var(--text-dim);letter-spacing:1px;">atau</span>
+        <div style="flex:1;height:1px;background:rgba(212,175,55,0.15);"></div>
+      </div>
+
+      <button onclick="handleGoogleAuth()"
+        style="width:100%;padding:15px;background:var(--gold-muted);border:1px solid var(--border);color:var(--text);border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:15px;letter-spacing:2px;font-weight:600;cursor:pointer;transition:background 0.2s;margin-bottom:20px;"
+        onmouseover="this.style.background='var(--gold-dim)'" onmouseout="this.style.background='var(--gold-muted)'">&#9711;&nbsp; LANJUTKAN DENGAN GOOGLE</button>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <a href="#" onclick="handleResetPassword(); return false;"
+          style="font-size:14px;color:var(--text-dim);text-decoration:none;letter-spacing:1px;"
+          onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-dim)'">Lupa password?</a>
+        <button onclick="closeAuthModal()"
+          style="padding:8px 16px;background:transparent;border:1px solid var(--border);color:var(--text-dim);border-radius:6px;font-family:'Rajdhani',sans-serif;font-size:14px;letter-spacing:2px;cursor:pointer;"
+          onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor=''">TUTUP</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Supabase Auth Init
+const supabaseClient = window.supabase.createClient(
+  'https://deqjvxsxovobpfisjyhg.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRlcWp2eHN4b3ZvYnBmaXNqeWhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2MDI5MjIsImV4cCI6MjA5NjE3ODkyMn0.qF8HJhGrBhO5H1FcLE0OryA3_P57N6pbv4Bn_SCps1I'
+);
+
+// Forward declaration to avoid hoisting issues
+let updateUserBadge;
+
+// Check session on load + auth state listener
+supabaseClient.auth.onAuthStateChange(async (event, session) => {
+  if (session && session.user) {
+    currentUser = session.user;
+    localStorage.setItem('ql-user-email', currentUser.email);
+    await updateUserBadge();
+    await updatePremiumButton();
+    updateLandingNav();
+    // Route on any event with a session (handles both initial load & sign-in)
+    const premium = await isPremium();
+    const currentId = document.querySelector('.page.active')?.id;
+    if (currentId !== 'pageSub') {
+      if (premium && currentId !== 'pageCalc') {
+        showPage('pageCalc');
+      } else if (!premium && currentId !== 'pageLanding') {
+        showPage('pageLanding');
+      } else {
+        hideLoader();
+      }
+    } else {
+      hideLoader();
+    }
+  } else {
+    currentUser = null;
+    await updateUserBadge();
+    updatePremiumButton();
+    updateLandingNav();
+  }
+});
+
+// Init auth state — jalankan setelah semua CDN scripts selesai load
+async function initAuth() {
+  try {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (session && session.user) {
+      currentUser = session.user;
+      localStorage.setItem('ql-user-email', currentUser.email);
+    }
+    await updateUserBadge();
+    await updatePremiumButton();
+    updateLandingNav();
+
+    // Route: premium → calculator, non-premium → landing
+    // If user explicitly navigated to pageSub, don't override
+    const currentPage = document.querySelector('.page.active');
+    if (currentPage && currentPage.id !== 'pageSub') {
+      const premium = await isPremium();
+      if (premium && currentPage.id !== 'pageCalc') {
+        showPage('pageCalc');
+        return;
+      } else if (!premium && currentPage.id !== 'pageLanding') {
+        showPage('pageLanding');
+        return;
+      }
+    }
+    // No routing needed — hide loader so pageLanding is revealed
+    hideLoader();
+  } catch(e) {
+    console.warn('initAuth error:', e.message);
+    hideLoader();
+    updateLandingNav();
+    // On error, show landing if not already on a specific page
+    const currentPage = document.querySelector('.page.active');
+    if (currentPage && currentPage.id !== 'pageSub' && currentPage.id !== 'pageLanding') {
+      showPage('pageLanding');
+    }
+  }
+}
+
+// Jalankan saat window load (bukan DOMContentLoaded) supaya CDN sudah siap
+if (document.readyState === 'complete') {
+  initAuth();
+  setTimeout(initGoogleGIS, 1000);
+} else {
+  window.addEventListener('load', () => {
+    initAuth();
+    setTimeout(initGoogleGIS, 1000);
+  });
+}
+
+function showAuthModal() {
+  document.getElementById('authModal').style.display = 'flex';
+  switchAuthTab('login');
+}
+
+// ============================================================================
+// UTM ATTRIBUTION
+// Capture UTM params on first visit, persist 30 days, attach to signup
+// ============================================================================
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+const UTM_STORAGE_KEY = 'ql_attribution';
+const UTM_TTL_DAYS = 30;
+
+function captureAttribution() {
+  try {
+    const url = new URL(window.location.href);
+    const params = url.searchParams;
+    const captured = {};
+    let hasUtm = false;
+    UTM_KEYS.forEach(k => {
+      const v = params.get(k);
+      if (v) { captured[k] = v; hasUtm = true; }
+    });
+    // Only overwrite if new UTM present (don't lose first-touch attribution)
+    if (hasUtm) {
+      const data = {
+        ...captured,
+        referrer: document.referrer || null,
+        landing_page: window.location.pathname + window.location.search,
+        user_agent: navigator.userAgent.slice(0, 200),
+        captured_at: new Date().toISOString(),
+        expires_at: new Date(Date.now() + UTM_TTL_DAYS * 86400000).toISOString()
+      };
+      localStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(data));
+    }
+  } catch (e) {
+    console.warn('UTM capture failed:', e);
+  }
+}
+
+function getAttribution() {
+  try {
+    const raw = localStorage.getItem(UTM_STORAGE_KEY);
+    if (!raw) return {};
+    const data = JSON.parse(raw);
+    if (data.expires_at && new Date(data.expires_at) < new Date()) {
+      localStorage.removeItem(UTM_STORAGE_KEY);
+      return {};
+    }
+    // Strip expires_at, keep payload
+    const { expires_at, captured_at, ...payload } = data;
+    return payload;
+  } catch (e) { return {}; }
+}
+
+// Run capture immediately on script load
+captureAttribution();
+
+function switchAuthTab(tab) {
+  currentAuthTab = tab;
+  const tabLogin = document.getElementById('tabLogin');
+  const tabSignup = document.getElementById('tabSignup');
+  const btnSubmit = document.getElementById('btnAuthSubmit');
+  if (tab === 'login') {
+    tabLogin.style.background = 'var(--gold)';
+    tabLogin.style.color = '#080A0D';
+    tabSignup.style.background = 'transparent';
+    tabSignup.style.color = 'var(--text-dim)';
+    btnSubmit.textContent = 'LOGIN';
+  } else {
+    tabSignup.style.background = 'var(--gold)';
+    tabSignup.style.color = '#080A0D';
+    tabLogin.style.background = 'transparent';
+    tabLogin.style.color = 'var(--text-dim)';
+    btnSubmit.textContent = 'SIGN UP';
+  }
+}
+
+function closeAuthModal() {
+  document.getElementById('authModal').style.display = 'none';
+}
+
+async function handleAuth(mode) {
+  const email = document.getElementById('authEmail').value;
+  const password = document.getElementById('authPassword').value;
+  
+  if (!email || !password || password.length < 6) {
+    showToast('Email & password (min 6 karakter) harus diisi', 'error', 'INVALID INPUT');
+    return;
+  }
+  
+  try {
+    let result;
+    if (mode === 'signup') {
+      const attribution = getAttribution();
+      result = await supabaseClient.auth.signUp({ 
+        email, 
+        password,
+        options: { 
+          emailRedirectTo: window.location.origin,
+          data: attribution
+        }
+      });
+    } else {
+      result = await supabaseClient.auth.signInWithPassword({ email, password });
+    }
+    
+    if (result.error) throw result.error;
+    
+    if (mode === 'signup') {
+      showToast('Cek email untuk verifikasi akun', 'success', 'ACCOUNT CREATED');
+      closeAuthModal();
+      return;
+    }
+    
+    currentUser = result.data.user;
+    localStorage.setItem('ql-user-email', currentUser.email);
+    closeAuthModal();
+    showToast('Login berhasil', 'success', 'WELCOME');
+    
+    // Refresh page to update UI
+    window.location.reload();
+  } catch (err) {
+    showToast(err.message, 'error', 'AUTH ERROR');
+  }
+}
+
+// Expose to global scope for onclick handlers
+window.handleAuth = handleAuth;
+
+async function handleLogout() {
+  try {
+    await supabaseClient.auth.signOut();
+    currentUser = null;
+    localStorage.removeItem('ql-user-email');
+    localStorage.removeItem('ql-premium');
+    // Hide user badge
+    document.getElementById('userBadge').classList.remove('visible');
+    showToast('Logout berhasil', 'success', 'LOGGED OUT');
+    window.location.reload();
+  } catch (err) {
+    showToast(err.message, 'error', 'LOGOUT ERROR');
+  }
+}
+
+// Expose to global scope
+window.handleLogout = handleLogout;
+
+// Update user badge visibility and premium status
+updateUserBadge = async function() {
+  const badge = document.getElementById('userBadge');
+  const emailSpan = document.getElementById('userEmail');
+  const premiumBadge = document.getElementById('premiumBadge');
+  
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  if (currentUser) {
+    emailSpan.textContent = currentUser.email;
+    emailSpan.title = currentUser.email;
+    badge.classList.add('visible');
+
+    // Check premium status
+    const premium = await isPremium();
+    premiumBadge.style.display = premium ? 'inline-block' : 'none';
+
+    // Show explicit logout button (badge is display-only now)
+    if (logoutBtn) logoutBtn.style.display = 'block';
+    badge.onclick = null;
+  } else {
+    badge.classList.remove('visible');
+    if (logoutBtn) logoutBtn.style.display = 'none';
+  }
+}
+
+async function handleResetPassword() {
+  const email = document.getElementById('authEmail').value;
+  if (!email || !email.includes('@')) {
+    showToast('Masukkan email yang valid', 'error', 'INVALID EMAIL');
+    return;
+  }
+  
+  try {
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin
+    });
+    if (error) throw error;
+    showToast('Link reset password sudah dikirim ke email', 'success', 'EMAIL SENT');
+    closeAuthModal();
+  } catch (err) {
+    showToast(err.message, 'error', 'RESET ERROR');
+  }
+}
+
+const GOOGLE_CLIENT_ID = '891836833664-0k6ijs6l9l6865crue33djtqasf706u8.apps.googleusercontent.com';
+let googleInitialized = false;
+let googleCallbackPending = false;
+
+function initGoogleGIS() {
+  if (googleInitialized || typeof google === 'undefined' || !google.accounts) return;
+  googleInitialized = true;
+
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    auto_select: false,
+    cancel_on_tap_outside: false,
+    callback: async (response) => {
+      googleCallbackPending = false;
+      if (response.credential) {
+        try {
+          const { data, error } = await supabaseClient.auth.signInWithIdToken({
+            provider: 'google',
+            token: response.credential
+          });
+          if (error) throw error;
+          currentUser = data.user;
+          // Attach UTM attribution if first signup (no existing metadata)
+          try {
+            const attribution = getAttribution();
+            const hasUtm = Object.keys(attribution).length > 0;
+            const meta = currentUser.user_metadata || {};
+            if (hasUtm && !meta.utm_source) {
+              await supabaseClient.auth.updateUser({ data: attribution });
+            }
+          } catch (e) { console.warn('Attribution attach failed:', e); }
+          localStorage.setItem('ql-user-email', currentUser.email);
+          closeAuthModal();
+          showToast('Login berhasil', 'success', 'WELCOME');
+          window.location.reload();
+        } catch (err) {
+          showToast(err.message, 'error', 'GOOGLE AUTH ERROR');
+        }
+      }
+    }
+  });
+}
+
+async function handleGoogleAuth() {
+  try {
+    if (typeof google === 'undefined' || !google.accounts) {
+      showToast('Google Sign-In not loaded. Coba refresh page', 'error', 'GIS NOT READY');
+      return;
+    }
+
+    if (!googleInitialized) initGoogleGIS();
+    if (googleCallbackPending) return;
+    googleCallbackPending = true;
+    google.accounts.id.prompt();
+  } catch (err) {
+    googleCallbackPending = false;
+    showToast(err.message, 'error', 'GOOGLE AUTH ERROR');
+  }
+}
+
+// Expose all auth functions to global scope for onclick handlers
+window.handleResetPassword = handleResetPassword;
+window.handleGoogleAuth = handleGoogleAuth;
+window.showAuthModal = showAuthModal;
+window.closeAuthModal = closeAuthModal;
+window.showToast = showToast;
+
+// Attach event listeners after DOM ready
+document.getElementById('btnSignup')?.addEventListener('click', () => handleAuth('signup'));
+document.getElementById('btnLogin')?.addEventListener('click', () => handleAuth('login'));
+
+// Register Service Worker for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('✓ Service Worker registered:', reg.scope))
+      .catch(err => console.error('✗ Service Worker registration failed:', err));
+  });
+}
+</script>
+
+</div> <!-- Close content-wrapper -->
+
+</body>
+</html>

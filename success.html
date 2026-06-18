@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pembayaran - Quantum Leaps</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+  background: #080A0D;
+  color: #E8E0CC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.container {
+  text-align: center;
+  max-width: 500px;
+  padding: 40px;
+}
+.icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 32px;
+  color: #D4AF37;
+  margin: 0 0 10px 0;
+}
+p {
+  font-size: 18px;
+  color: #6B7A8D;
+  margin: 0 0 30px 0;
+}
+.btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: #D4AF37;
+  color: #080A0D;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+}
+.btn:hover {
+  background: #F0D060;
+}
+.btn-secondary {
+  background: #6B4F0A;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="icon" id="icon">✓</div>
+  <h1 id="title">Pembayaran Berhasil!</h1>
+  <p id="message">Akun Anda sedang diverifikasi. Mohon tunggu sebentar.</p>
+  <div style="margin-bottom:20px;">
+    <a href="/tutorial.html" class="btn btn-secondary" style="margin-right:10px;">
+      📹 LIHAT TUTORIAL
+    </a>
+    <a href="/" class="btn">MULAI KALKULASI</a>
+  </div>
+</div>
+
+<script>
+// Read status from URL params — set by server-side /api/subscription/activate
+// NO direct premium activation here — activation is server-side only via webhook
+const params = new URLSearchParams(window.location.search);
+const status = params.get('status');
+const plan = params.get('plan');
+const verified = params.get('verified');
+
+const icon = document.getElementById('icon');
+const title = document.getElementById('title');
+const message = document.getElementById('message');
+
+if (status === 'active' && verified === '1') {
+  // Server confirmed activation
+  icon.textContent = '✓';
+  title.textContent = 'Akun Premium Aktif!';
+  message.textContent = plan
+    ? `Paket ${plan.toUpperCase()} Anda telah diaktifkan. Selamat trading!`
+    : 'Akun Premium Anda telah diaktifkan. Selamat trading!';
+  // Auto redirect after 3s
+  setTimeout(() => window.location.href = '/', 3000);
+
+} else if (status === 'pending') {
+  // Payment received, waiting for webhook confirmation
+  icon.textContent = '⏳';
+  title.textContent = 'Pembayaran Diproses';
+  message.textContent = 'Pembayaran Anda sedang diverifikasi. Akun akan aktif dalam beberapa menit. Cek email Anda untuk konfirmasi.';
+
+} else if (status === 'error') {
+  icon.textContent = '⚠️';
+  title.textContent = 'Terjadi Kesalahan';
+  message.textContent = 'Terjadi masalah saat aktivasi. Hubungi kami dengan menyertakan bukti pembayaran Anda.';
+
+} else {
+  // Unknown status — show generic pending
+  icon.textContent = '⏳';
+  title.textContent = 'Pembayaran Diterima';
+  message.textContent = 'Akun Anda akan aktif setelah pembayaran dikonfirmasi. Biasanya dalam beberapa menit.';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{"type": "host", "value": "quantum-leaps-gamma.vercel.app"}],
+      "destination": "https://quantum.sayandaktau.web.id/$1",
+      "permanent": true
+    },
+    {
+      "source": "/tt",
+      "destination": "/?utm_source=tiktok&utm_medium=bio&utm_campaign=tiktok_bio",
+      "permanent": false
+    },
+    {
+      "source": "/tt/v",
+      "destination": "/?utm_source=tiktok&utm_medium=organic&utm_campaign=video_overanalyze",
+      "permanent": false
+    },
+    {
+      "source": "/tt/c",
+      "destination": "/?utm_source=tiktok&utm_medium=organic&utm_campaign=comment_pin",
+      "permanent": false
+    },
+    {
+      "source": "/ig",
+      "destination": "/?utm_source=instagram&utm_medium=bio&utm_campaign=ig_bio",
+      "permanent": false
+    },
+    {
+      "source": "/fb",
+      "destination": "/?utm_source=facebook&utm_medium=bio&utm_campaign=fb_bio",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {"source": "/tutorial", "destination": "/tutorial.html"}
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {"key": "X-Content-Type-Options", "value": "nosniff"},
+        {"key": "X-Frame-Options", "value": "DENY"},
+        {"key": "X-XSS-Protection", "value": "1; mode=block"},
+        {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
+        {"key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()"},
+        {"key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload"},
+        {"key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' cdn.tailwindcss.com accounts.google.com cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; connect-src 'self' *.supabase.co accounts.google.com; img-src 'self' data: https:; frame-src 'self' www.youtube.com www.youtube-nocookie.com youtube.com; frame-ancestors 'none';"}
+      ]
+    }
+  ]
+}

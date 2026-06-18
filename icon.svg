@@ -1,0 +1,34 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#080A0D"/>
+  
+  <!-- Outer square -->
+  <rect x="106" y="106" width="300" height="300" fill="none" stroke="#D4AF37" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Middle square rotated 45deg -->
+  <g transform="translate(256 256) rotate(45) translate(-150 -150)">
+    <rect x="0" y="0" width="300" height="300" fill="none" stroke="#D4AF37" stroke-width="3" opacity="0.5"/>
+  </g>
+  
+  <!-- Inner circle -->
+  <circle cx="256" cy="256" r="80" fill="none" stroke="#D4AF37" stroke-width="4"/>
+  
+  <!-- Center spiral (Gann square pattern) -->
+  <path d="M 256 256 L 276 256 L 276 236 L 236 236 L 236 276 L 296 276 L 296 216 L 216 216" 
+        fill="none" stroke="#F0D060" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Text -->
+  <text x="256" y="450" font-family="monospace" font-size="48" font-weight="700" fill="#D4AF37" text-anchor="middle">Q</text>
+  
+  <!-- Glow effect -->
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <circle cx="256" cy="256" r="80" fill="none" stroke="#D4AF37" stroke-width="2" filter="url(#glow)" opacity="0.6"/>
+</svg>

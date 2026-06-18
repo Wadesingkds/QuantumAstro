@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial - Quantum Leaps</title>
+<script>
+  // Theme: follow system, override via localStorage
+  (function() {
+    var saved = localStorage.getItem('ql-theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<style>
+:root {
+  --bg-dark: #080A0D;
+  --bg-card: #0E1116;
+  --gold: #D4AF37;
+  --gold-light: #F0D060;
+  --gold-dim: rgba(212,175,55,0.15);
+  --gold-muted: rgba(212,175,55,0.08);
+  --text: #E8E0CC;
+  --text-dim: #6B7A8D;
+  --border: rgba(212,175,55,0.12);
+}
+[data-theme="light"] {
+  --bg-dark: #F5F1E8;
+  --bg-card: #FFFFFF;
+  --gold: #B8962E;
+  --gold-light: #8A7322;
+  --gold-dim: rgba(184,150,46,0.12);
+  --gold-muted: rgba(184,150,46,0.06);
+  --text: #1A1A1A;
+  --text-dim: #6B7280;
+  --border: rgba(184,150,46,0.15);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+  line-height: 1.5;
+}
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.header h1 {
+  font-size: 36px;
+  color: var(--gold);
+  margin: 0;
+  letter-spacing: 2px;
+}
+.header p {
+  font-size: 15px;
+  color: var(--text-dim);
+  margin: 6px 0 0 0;
+}
+.back-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--gold); }
+
+/* MAIN LAYOUT */
+.tutorial-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* PLAYER */
+.player-section {
+  flex: 1;
+  min-width: 0;
+}
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  background: #000;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.video-info {
+  margin-top: 14px;
+}
+.video-info h2 {
+  font-size: 20px;
+  color: var(--gold-light);
+  margin: 0 0 4px 0;
+}
+.video-info .video-meta {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin: 0 0 8px 0;
+}
+.video-info .video-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* PLAYLIST SIDEBAR */
+.playlist-sidebar {
+  width: 340px;
+  flex-shrink: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.playlist-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.playlist-header h3 {
+  margin: 0;
+  font-size: 15px;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.playlist-header span {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.playlist-items {
+  max-height: 580px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) transparent;
+}
+.playlist-items::-webkit-scrollbar { width: 4px; }
+.playlist-items::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+/* PLAYLIST ITEM */
+.playlist-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  position: relative;
+}
+.playlist-item:hover {
+  background: var(--gold-muted);
+}
+.playlist-item.active {
+  background: var(--gold-dim);
+  border-left: 3px solid var(--gold);
+  padding-left: 13px;
+}
+.playlist-item.active .item-title {
+  color: var(--gold-light);
+}
+.playlist-thumb {
+  width: 120px;
+  height: 68px;
+  border-radius: 6px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+  background: #111;
+}
+.playlist-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.playlist-thumb .duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  font-size: 11px;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.playlist-item.active .playlist-thumb::after {
+  content: "▶";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(212,175,55,0.5);
+}
+.item-info {
+  flex: 1;
+  min-width: 0;
+}
+.item-num {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+.item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 2px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.cta .btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--gold);
+  color: var(--bg-dark);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+.cta .btn:hover { background: var(--gold-light); }
+.cta .btn-secondary {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+}
+.cta .btn-secondary:hover { background: var(--gold-dim); }
+
+/* LOADING / ERROR */
+.loading, .error {
+  text-align: center;
+  padding: 100px 20px;
+}
+.loading { color: var(--text-dim); }
+.error { color: #E57373; }
+.error h2 { font-size: 28px; margin: 0 0 10px 0; }
+.error p { color: var(--text-dim); margin: 0 0 24px 0; font-size: 15px; }
+.error .btn { margin: 0; }
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .tutorial-layout { flex-direction: column; }
+  .playlist-sidebar { width: 100%; }
+  .playlist-items { max-height: 400px; }
+}
+
+/* BADGES + LOCKED STATE */
+.badge-free {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 1px 5px;
+  background: var(--gold);
+  color: var(--bg-dark);
+  border-radius: 3px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.badge-lock {
+  display: inline-block;
+  font-size: 11px;
+  margin-left: 4px;
+  opacity: 0.7;
+  vertical-align: middle;
+}
+.playlist-item.locked {
+  opacity: 0.55;
+  cursor: pointer;
+}
+.playlist-item.locked:hover {
+  opacity: 0.75;
+}
+.playlist-item.locked .playlist-thumb::before {
+  content: "🔒";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  z-index: 2;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+}
+
+/* UPGRADE BANNER */
+.upgrade-banner {
+  display: none;
+  margin-top: 24px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, var(--gold-dim), var(--gold-muted));
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  text-align: center;
+}
+.upgrade-banner h3 {
+  margin: 0 0 6px 0;
+  color: var(--gold);
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.upgrade-banner p {
+  margin: 0 0 14px 0;
+  color: var(--text);
+  font-size: 14px;
+}
+.upgrade-banner .btn {
+  display: inline-block;
+  padding: 11px 28px;
+  background: var(--gold);
+  color: var(--bg-dark);
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: background 0.2s;
+}
+.upgrade-banner .btn:hover { background: var(--gold-light); }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="loading" class="loading">
+  <div style="font-size:40px;margin-bottom:16px;">⏳</div>
+  <p>Memuat tutorial...</p>
+</div>
+
+<div id="error" class="error" style="display:none;">
+  <h2>⚠️ Gagal Memuat</h2>
+  <p>Terjadi kesalahan saat memuat tutorial. Silakan refresh halaman.</p>
+  <a href="/" class="btn">KEMBALI KE BERANDA</a>
+</div>
+
+<div id="content" class="container" style="display:none;">
+  <div class="header">
+    <h1>✦ TUTORIAL</h1>
+    <p>Pelajari cara pakai Quantum Leaps — 2 video gratis, sisanya untuk member Premium</p>
+    <a href="/" class="back-link">← Kembali ke kalkulator</a>
+  </div>
+
+  <div class="tutorial-layout">
+    <!-- PLAYER -->
+    <div class="player-section">
+      <div class="video-wrapper">
+        <iframe id="player"
+          src="https://www.youtube.com/embed/uxLdBvYZ3cc?enablejsapi=1&rel=0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <h2 id="video-title">Pengenalan App</h2>
+        <p class="video-meta" id="video-counter">Video 1 dari 7</p>
+        <p class="video-desc" id="video-desc">Mengenal fitur utama Quantum Leaps — Gann Square of 9 Calculator.</p>
+      </div>
+    </div>
+
+    <!-- PLAYLIST -->
+    <div class="playlist-sidebar">
+      <div class="playlist-header">
+        <h3>📋 PLAYLIST</h3>
+        <span>7 video</span>
+      </div>
+      <div class="playlist-items" id="playlist"></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <a href="/" class="btn">MULAI KALKULASI</a>
+    <a href="https://wa.me/6285726790986" class="btn btn-secondary" target="_blank">💬 SUPPORT VIA WHATSAPP</a>
+  </div>
+
+  <!-- UPGRADE BANNER (shown to non-premium) -->
+  <div id="upgrade-banner" class="upgrade-banner">
+    <h3>✦ UNLOCK SEMUA TUTORIAL</h3>
+    <p>5 video premium menanti — Cara Entry Sell, Buy, Confirmation, Backtest, dan Timing.<br>Akses lifetime cuma <strong>Rp 500.000</strong>.</p>
+    <a href="/" class="btn">UPGRADE KE PREMIUM</a>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ====== PLAYLIST DATA ======
+// `free: true` = playable tanpa login. Free videos shown publik buat trust-builder.
+const playlist = [
+  {
+    id: 'uxLdBvYZ3cc',
+    title: 'Pengenalan App',
+    desc: 'Mengenal fitur utama Quantum Leaps — Gann Square of 9 Calculator.',
+    duration: '0:45',
+    free: true
+  },
+  {
+    id: 'yxi-bSsWCxY',
+    title: 'Dasar Konfirmasi',
+    desc: 'Cara membaca sinyal konfirmasi sebelum entry.',
+    duration: '0:50',
+    free: false
+  },
+  {
+    id: 'smfYgiD7JMA',
+    title: 'Waktu yang Tepat untuk Trading',
+    desc: 'Jam-jam terbaik trading XAUUSD menggunakan proyeksi Gann.',
+    duration: '0:55',
+    free: false
+  },
+  {
+    id: 'g29Yza4A3qQ',
+    title: 'Cara Entry Sell',
+    desc: 'Panduan entry posisi Sell (Short) — timing, level, dan manajemen risiko.',
+    duration: '1:00',
+    free: false
+  },
+  {
+    id: 'vmb7Fzs0jus',
+    title: 'Cara Entry Buy',
+    desc: 'Panduan entry posisi Buy (Long) menggunakan proyeksi Gann Square of 9.',
+    duration: '1:00',
+    free: false
+  },
+  {
+    id: 'VzvgL93RZ_I',
+    title: 'Selalu Gunakan Confluence Zone',
+    desc: 'Kenapa confluence zone adalah kunci akurasi — jangan entry tanpa ini.',
+    duration: '3:20',
+    free: true
+  },
+  {
+    id: 'MDMAJmJfpwFs',
+    title: 'Backtest — Mencari Entry yang Tepat',
+    desc: 'Backtest real-time: bagaimana mengidentifikasi setup entry berkualitas tinggi.',
+    duration: '4:10',
+    free: false
+  }
+];
+
+let currentIndex = 0;
+const player = document.getElementById('player');
+const videoTitle = document.getElementById('video-title');
+const videoCounter = document.getElementById('video-counter');
+const videoDesc = document.getElementById('video-desc');
+const playlistEl = document.getElementById('playlist');
+
+function formatDuration(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+function renderPlaylist() {
+  playlistEl.innerHTML = playlist.map((v, i) => {
+    const active = i === currentIndex ? 'active' : '';
+    const locked = (!isPremium && !v.free) ? 'locked' : '';
+    const thumb = 'https://img.youtube.com/vi/' + v.id + '/mqdefault.jpg';
+    const num = String(i + 1).padStart(2, '0');
+    const badge = v.free ? '<span class="badge-free">FREE</span>' : (!isPremium ? '<span class="badge-lock">🔒</span>' : '');
+    return `
+      <div class="playlist-item ${active} ${locked}" data-index="${i}" onclick="switchVideo(${i})">
+        <div class="playlist-thumb">
+          <img src="${thumb}" alt="${v.title}" loading="lazy">
+          <span class="duration">${v.duration}</span>
+        </div>
+        <div class="item-info">
+          <div class="item-num">${num} ${badge}</div>
+          <div class="item-title">${v.title}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function switchVideo(index) {
+  if (index === currentIndex) return;
+  const v = playlist[index];
+  // Block locked videos for non-premium
+  if (!isPremium && !v.free) {
+    showUpgradePrompt();
+    return;
+  }
+  currentIndex = index;
+  player.src = 'https://www.youtube.com/embed/' + v.id + '?enablejsapi=1&rel=0&autoplay=1';
+  videoTitle.textContent = v.title;
+  videoCounter.textContent = 'Video ' + (index + 1) + ' dari ' + playlist.length;
+  videoDesc.textContent = v.desc;
+  renderPlaylist();
+  // Scroll item into view
+  const items = playlistEl.querySelectorAll('.playlist-item');
+  if (items[index]) items[index].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function showUpgradePrompt() {
+  const banner = document.getElementById('upgrade-banner');
+  if (banner) {
+    banner.style.display = 'block';
+    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+// Handle keyboard — next/prev with arrow keys
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+    if (currentIndex < playlist.length - 1) switchVideo(currentIndex + 1);
+  } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    if (currentIndex > 0) switchVideo(currentIndex - 1);
+  }
+});
+
+// ====== AUTH CHECK ======
+// Free tier: show 2 free videos publik. Premium: show all.
+const SUPABASE_URL = 'https://deqjvxsxovobpfisjyhg.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbG...ps1I';
+const TIMEOUT_MS = 10000;
+
+let isPremium = false; // global flag — controls lock UI
+
+async function checkAccess() {
+  const loading = document.getElementById('loading');
+  const error = document.getElementById('error');
+  const content = document.getElementById('content');
+
+  function showContent() {
+    loading.style.display = 'none';
+    if (error) error.style.display = 'none';
+    content.style.display = 'block';
+    renderPlaylist();
+    // Show upgrade banner for non-premium
+    const banner = document.getElementById('upgrade-banner');
+    if (banner && !isPremium) banner.style.display = 'block';
+  }
+
+  // Always show content — free videos for non-premium, all for premium
+  const timer = setTimeout(function() {
+    console.warn('Access check timed out — showing free tier');
+    showContent();
+  }, TIMEOUT_MS);
+
+  try {
+    if (typeof window.supabase === 'undefined' || !window.supabase.createClient) {
+      console.warn('Supabase not loaded — free tier only');
+      clearTimeout(timer);
+      showContent();
+      return;
+    }
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+      // Check legacy localStorage flag
+      isPremium = localStorage.getItem('ql-premium') === 'true';
+      clearTimeout(timer);
+      showContent();
+      return;
+    }
+
+    const { data: subscription, error: subError } = await supabase
+      .from('subscriptions')
+      .select('status, expires_at')
+      .eq('user_id', session.user.id)
+      .single();
+
+    if (!subError && subscription && subscription.status === 'active') {
+      if (subscription.expires_at && new Date(subscription.expires_at) < new Date()) {
+        isPremium = false;
+      } else {
+        isPremium = true;
+      }
+    }
+
+    clearTimeout(timer);
+    showContent();
+  } catch (err) {
+    console.warn('Access check failed — free tier only:', err);
+    clearTimeout(timer);
+    showContent();
+  }
+}
+
+checkAccess();
+</script>
+</body>
+</html>
