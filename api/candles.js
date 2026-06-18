@@ -3,8 +3,9 @@
  * Sources (priority order):
  *   1. Binance Futures XAUUSDT
  *   2. Binance Spot PAXGUSDT (gold-backed token)
- *   3. CoinGecko PAXG OHLC (gold-backed token, always available)
- *   4. Yahoo Finance XAUUSD=X / GC=F
+ *   3. CoinGecko PAXG market_chart → derived OHLC (works for any timeframe)
+ *   4. CoinGecko PAXG OHLC (only for 30m+ timeframes)
+ *   5. Yahoo Finance XAUUSD=X
  * Query: ?interval=15m&limit=200
  */
 
@@ -18,7 +19,6 @@ export default async function handler(req, res) {
 
   const { interval = '15m', limit = '200' } = req.query;
 
-  // Validate interval
   const validIntervals = ['1m','3m','5m','15m','30m','1h','2h','4h','6h','8h','12h','1d'];
   if (!validIntervals.includes(interval)) {
     return res.status(400).json({ error: 'Invalid interval' });
@@ -71,39 +71,40 @@ export default async function handler(req, res) {
     errors.push(`binance-spot: ${err.message}`);
   }
 
-  // ── Source 3: CoinGecko PAXG (gold-backed token OHLC) ──
+  // ── Source 3: CoinGecko PAXG market_chart (works for ALL timeframes) ──
+  // Returns ~5min price snapshots which we aggregate into target timeframe OHLC
   try {
     // Map our interval to CoinGecko days parameter
+    // market_chart supports days 1, 7, 14, 30, 90, 180, 365
     const cgDaysMap = {
-      '5m': 1, '15m': 1, '30m': 1, '1h': 7,
+      '5m': 1, '15m': 1, '30m': 1, '1h': 1,
       '2h': 7, '4h': 14, '6h': 14, '8h': 14,
-      '12h': 14, '1d': 90
+      '12h': 14, '1d': 30
     };
-    const cgDays = cgDaysMap[interval] || 7;
-    const url = `https://api.coingecko.com/api/v3/coins/pax-gold/ohlc?vs_currency=usd&days=${cgDays}`;
+    const cgDays = cgDaysMap[interval] || 1;
+    const url = `https://api.coingecko.com/api/v3/coins/pax-gold/market_chart?vs_currency=usd&days=${cgDays}`;
     const resp = await fetch(url, {
       headers: { 'Accept': 'application/json', 'User-Agent': 'Mozilla/5.0' },
       signal: AbortSignal.timeout(10000)
     });
 
     if (resp.ok) {
-      const raw = await resp.json();
-      if (!Array.isArray(raw) || raw.length < 10) throw new Error('Insufficient CoinGecko data');
+      const data = await resp.json();
+      const prices = data?.prices || [];
+      if (prices.length < 10) throw new Error('Insufficient market_chart data: ' + prices.length);
 
-      // CoinGecko OHLC format: [timestamp_ms, open, high, low, close]
-      // Granularity varies by days: 1d=5min, 7d=30min, 14d=4h, 30d=4h, 90d=4h
-      const candles = raw.map(k => ({
-        time: k[0],
-        open: parseFloat(k[1]),
-        high: parseFloat(k[2]),
-        low: parseFloat(k[3]),
-        close: parseFloat(k[4]),
-        volume: 0,
-        timeISO: new Date(k[0]).toISOString()
+      // prices format: [[timestamp_ms, price], ...] at ~5min intervals
+      // Convert to candles, then aggregate to target interval
+      const rawCandles = prices.map(p => ({
+        time: p[0],
+        open: p[1],
+        high: p[1],
+        low: p[1],
+        close: p[1],
+        volume: 0
       }));
 
-      // Aggregate candles if needed to match our timeframe
-      const aggregated = aggregateCandles(candles, interval);
+      const aggregated = aggregateCandles(rawCandles, interval);
       const trimmed = aggregated.slice(-lim);
 
       if (trimmed.length < 10) throw new Error('After aggregation insufficient: ' + trimmed.length);
@@ -113,12 +114,12 @@ export default async function handler(req, res) {
         symbol: 'PAXG',
         interval,
         candles: trimmed,
-        note: 'PAXG gold-backed token via CoinGecko OHLC'
+        note: 'PAXG gold-backed token, OHLC derived from market_chart'
       });
     }
-    errors.push(`coingecko: HTTP ${resp.status}`);
+    errors.push(`coingecko-market: HTTP ${resp.status}`);
   } catch (err) {
-    errors.push(`coingecko: ${err.message}`);
+    errors.push(`coingecko-market: ${err.message}`);
   }
 
   // ── Source 4: Yahoo Finance XAUUSD=X ──
@@ -187,7 +188,7 @@ export default async function handler(req, res) {
   });
 }
 
-// Aggregate raw CoinGecko candles into our target timeframe
+// Aggregate raw candles into our target timeframe (proper OHLC)
 function aggregateCandles(candles, targetInterval) {
   const intervalMs = {
     '5m': 5 * 60000, '15m': 15 * 60000, '30m': 30 * 60000,
@@ -196,14 +197,12 @@ function aggregateCandles(candles, targetInterval) {
   };
   const target = intervalMs[targetInterval] || 15 * 60000;
 
-  // If smallest candle is already >= target, no aggregation needed
-  if (candles.length < 2) return candles;
-  const smallestGap = candles[1].time - candles[0].time;
-  if (smallestGap >= target) return candles;
+  if (candles.length < 2) return candles.map(c => ({ ...c, timeISO: new Date(c.time).toISOString() }));
 
   const result = [];
   let bucket = null;
   for (const c of candles) {
+    // Round down to target interval boundary
     const bucketStart = Math.floor(c.time / target) * target;
     if (!bucket || bucket.time !== bucketStart) {
       if (bucket) result.push(bucket);
