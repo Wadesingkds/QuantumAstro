@@ -105,9 +105,11 @@ export default async function handler(req, res) {
       }));
 
       const aggregated = aggregateCandles(rawCandles, interval);
-      const trimmed = aggregated.slice(-lim);
 
-      if (trimmed.length < 10) throw new Error('After aggregation insufficient: ' + trimmed.length);
+      // Don't trim if limit is too small — always keep aggregated for swing detection
+      if (aggregated.length < 10) throw new Error('After aggregation insufficient: ' + aggregated.length);
+
+      const trimmed = aggregated.slice(-Math.max(lim, aggregated.length));
 
       return res.status(200).json({
         source: 'coingecko-paxg',
