@@ -1877,20 +1877,25 @@
   }
 
   async function calculate() {
-    // Check Supabase session directly (tidak rely pada localStorage)
-    const { data: { session } } = await supabaseClient.auth.getSession();
-    if (!session) {
-      const modal = document.getElementById('authModal');
-      if (modal) modal.style.display = 'flex';
-      return;
-    }
+    // Test mode: skip auth check, go straight to computation
+    if (isTestMode()) {
+      console.info('[test-mode] calculate → bypassing auth check');
+    } else {
+      // Check Supabase session directly (tidak rely pada localStorage)
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (!session) {
+        const modal = document.getElementById('authModal');
+        if (modal) modal.style.display = 'flex';
+        return;
+      }
 
-    // Check premium status
-    const premium = await isPremium();
-    if (!premium) {
-      showToast('Upgrade ke Premium untuk akses penuh', 'warning', 'PREMIUM REQUIRED');
-      showPage('pageSub');
-      return;
+      // Check premium status
+      const premium = await isPremium();
+      if (!premium) {
+        showToast('Upgrade ke Premium untuk akses penuh', 'warning', 'PREMIUM REQUIRED');
+        showPage('pageSub');
+        return;
+      }
     }
     
     const highEl  = document.getElementById('swingHigh');
@@ -2038,18 +2043,23 @@
   }
 
   async function calculateAstroCycle() {
-    // Auth + premium gate
-    const { data: { session } } = await supabaseClient.auth.getSession();
-    if (!session) {
-      const modal = document.getElementById('authModal');
-      if (modal) modal.style.display = 'flex';
-      return;
-    }
-    const premium = await isPremium();
-    if (!premium) {
-      showToast('Upgrade ke Premium untuk akses penuh', 'warning', 'PREMIUM REQUIRED');
-      showPage('pageSub');
-      return;
+    // Test mode: skip auth check, go straight to computation
+    if (isTestMode()) {
+      console.info('[test-mode] calculateAstroCycle → bypassing auth check');
+    } else {
+      // Auth + premium gate
+      const { data: { session } } = await supabaseClient.auth.getSession();
+      if (!session) {
+        const modal = document.getElementById('authModal');
+        if (modal) modal.style.display = 'flex';
+        return;
+      }
+      const premium = await isPremium();
+      if (!premium) {
+        showToast('Upgrade ke Premium untuk akses penuh', 'warning', 'PREMIUM REQUIRED');
+        showPage('pageSub');
+        return;
+      }
     }
 
     const dtInput = document.getElementById('astroDatetime');
