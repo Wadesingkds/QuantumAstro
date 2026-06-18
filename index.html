@@ -4,9 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QUANTUM Leaps — Gann Square of 9 XAUUSD Calculator</title>
-<meta name="description" content="Kalkulasi proyeksi harga XAUUSD dengan Gann Square of 9 & Gann Astro Cycle. Gratis, tanpa login, langsung pakai di browser.">
-<meta name="keywords" content="gann square of 9, gann astro cycle, XAUUSD, trading emas, kalkulator trading, swing high, swing low, price projection">
-<meta name="keywords" content="gann square of 9, gann astro cycle, XAUUSD, trading emas, kalkulator trading, swing high, swing low, price projection">
+<meta name="description" content="Kalkulasi proyeksi harga XAUUSD dengan metode Gann Square of 9. Tools premium untuk trader gold yang ingin entry lebih presisi. Lifetime access Rp 500K.">
+<meta name="keywords" content="gann square of 9, XAUUSD calculator, gold trading, proyeksi harga emas, gann trading, quantum leaps">
 <meta name="author" content="Quantum Leaps">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://quantumleaps.biz.id/">
@@ -25,7 +24,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://quantumleaps.biz.id/">
 <meta property="og:title" content="QUANTUM Leaps — Gann Square of 9 XAUUSD Calculator">
-<meta property="og:description" content="Kalkulasi proyeksi harga XAUUSD dengan Gann Square of 9 & Gann Astro Cycle. Gratis, tanpa login, langsung pakai.">
+<meta property="og:description" content="Kalkulasi proyeksi harga XAUUSD dengan metode Gann Square of 9. Tools premium untuk trader gold. Lifetime access Rp 500K.">
 <meta property="og:image" content="https://quantumleaps.biz.id/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -36,24 +35,24 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://quantumleaps.biz.id/">
 <meta name="twitter:title" content="QUANTUM Leaps — Gann Square of 9 XAUUSD Calculator">
-<meta name="twitter:description" content="Kalkulasi proyeksi harga XAUUSD dengan Gann Square of 9 & Gann Astro Cycle. Gratis, tanpa login.">
+<meta name="twitter:description" content="Kalkulasi proyeksi harga XAUUSD dengan metode Gann Square of 9. Tools premium untuk trader gold. Lifetime access Rp 500K.">
 <meta name="twitter:image" content="https://quantumleaps.biz.id/og-image.png">
 
 <!-- Structured Data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
+  "@type": "SoftwareApplication",
   "name": "Quantum Leaps",
-  "description": "Kalkulasi proyeksi harga XAUUSD dengan Gann Square of 9 & Gann Astro Cycle. Gratis, tanpa login.",
+  "description": "Kalkulasi proyeksi harga XAUUSD dengan metode Gann Square of 9 untuk trader gold profesional.",
   "url": "https://quantumleaps.biz.id",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "offers": {
     "@type": "Offer",
-    "price": "0",
+    "price": "500000",
     "priceCurrency": "IDR",
-    "name": "Free Access"
+    "name": "Lifetime Access"
   },
   "publisher": {
     "@type": "Organization",
@@ -1095,9 +1094,10 @@
 <div class="card">
   <div class="card-top-line"></div>
 
-  <!-- User Info Badge -->
-  <div class="user-badge" id="userBadge" style="display:none;">
+  <!-- User Info Badge (new shadcn style) -->
+  <div class="user-badge" id="userBadge">
     <span class="user-badge-email" id="userEmail"></span>
+    <span class="user-badge-premium" id="premiumBadge" style="display:none;">PREMIUM</span>
   </div>
 
   <!-- Theme Toggle -->
@@ -1153,6 +1153,9 @@
     </span>
   </button>
   <button class="btn-reset" onclick="reset()">↺ &nbsp;RESET</button>
+  <button class="btn-premium" onclick="showPage('pageSub')" id="btnUpgrade">
+    ✦ &nbsp;UPGRADE TO PREMIUM
+  </button>
   <a href="/tutorial.html" class="btn-premium" id="btnTutorial" onclick="return handleTutorialClick(event)" style="display:inline-block;text-decoration:none;background:#6B4F0A;text-align:center;">
     TUTORIAL
   </a>
@@ -1316,6 +1319,59 @@
 </div>
 
 <!-- ══════════════════════════════════ -->
+<!--         PAGE: SUBSCRIPTION         -->
+<!-- ══════════════════════════════════ -->
+<div class="page" id="pageSub">
+<div class="sub-card">
+
+  <button class="back-btn" onclick="showPage('pageCalc')">
+    ← &nbsp;BACK TO CALCULATOR
+  </button>
+
+  <div class="sub-header">
+    <div class="sub-tag">QUANTUM LEAPS PREMIUM</div>
+    <h2 class="sub-title">Upgrade Your Edge</h2>
+    <div class="sub-desc">Fitur eksklusif untuk trader serius</div>
+  </div>
+
+
+
+  <!-- ONE-TIME OFFER -->
+  <div class="plan-card popular">
+    <div class="popular-badge">✦ HARGA HARI INI</div>
+    <div class="plan-top">
+      <div>
+        <div class="plan-name" style="color:var(--gold-light);">PREMIUM ACCESS</div>
+        <div class="plan-period">Bayar sekali · akses selamanya</div>
+      </div>
+      <div class="plan-price">
+        <div class="plan-amount">Rp 500K</div>
+        <div class="plan-currency">one-time</div>
+      </div>
+    </div>
+    <ul class="plan-features">
+      <li><span class="check">✓</span> <strong>Multi-timeframe M1 & M5</strong></li>
+      <li><span class="check">✓</span> <strong>Confluence Detector</strong></li>
+      <li><span class="check">✓</span> Save History (localStorage)</li>
+      <li><span class="check">✓</span> Export PNG — share ke grup</li>
+      <li><span class="check">✓</span> Custom Offset (atur sendiri)</li>
+      <li><span class="check">✓</span> Priority support via WhatsApp</li>
+      <li><span class="check">✓</span> Semua update fitur selamanya</li>
+    </ul>
+    <button class="btn-subscribe" id="btnSubscribe" onclick="handleSubscribe('lifetime')">
+      BELI SEKARANG
+    </button>
+    <div class="premium-member-badge" id="premiumMemberBadge" style="display:none;">
+      <span class="pm-icon">✦</span> PREMIUM MEMBER
+    </div>
+  </div>
+
+  <div class="sub-note">Hubungi kami untuk info pembayaran & aktivasi akun</div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════ -->
 <!--          PAGE: LANDING             -->
 <!-- ══════════════════════════════════ -->
 <div class="page page-landing active" id="pageLanding">
@@ -1341,8 +1397,8 @@
       Tools khusus XAUUSD untuk trader yang serius. Hitung level support &amp; resistance harian
       menggunakan rumus geometric geometry yang digunakan trader profesional sejak puluhan tahun.
     </p>
-    <a href="#" class="hero-cta" onclick="landingHandleAccess(event)">✦ BUKA KALKULATOR GRATIS</a>
-    <p class="hero-note">Akses langsung, tanpa login, tanpa bayar.</p>
+    <a href="#" class="hero-cta" onclick="landingHandleAccess(event)">✦ GET PREMIUM ACCESS &mdash; Rp 500.000</a>
+    <p class="hero-note">Sekali bayar, akses seumur hidup. Tidak ada free tier.</p>
   </div>
 </section>
 
@@ -1374,7 +1430,7 @@
         <div class="feature-marker"></div>
         <div class="feature-content">
           <h3>No Limits, No Ads</h3>
-          <p>Tanpa login, tanpa iklan, tanpa hidden fee. Akses penuh langsung dari browser.</p>
+          <p>Bayar sekali — akses premium penuh tanpa batas hitungan, tanpa iklan, tanpa hidden fee.</p>
         </div>
       </li>
       <li>
@@ -1394,36 +1450,36 @@
 <section>
   <div class="container">
     <div class="section-label">Cara Kerja</div>
-    <h2 class="sec-title">Dari buka ke proyeksi dalam 30 detik.</h2>
-    <p class="sec-sub">Tanpa login, tanpa registrasi, langsung pakai.</p>
+    <h2 class="sec-title">Dari pendaftaran ke proyeksi dalam 2 menit.</h2>
+    <p class="sec-sub">Proses sederhana, langsung bisa dipakai.</p>
 
     <ol class="steps">
       <li>
         <div class="step-num">1</div>
         <div class="step-content">
-          <h3>Buka</h3>
-          <p>Klik tombol kalkulator — langsung terbuka, tanpa perlu login atau daftar.</p>
+          <h3>Login</h3>
+          <p>Daftar dengan Google OAuth — 10 detik, tanpa verifikasi email berulang.</p>
         </div>
       </li>
       <li>
         <div class="step-num">2</div>
         <div class="step-content">
-          <h3>Input Swing</h3>
-          <p>Pilih swing high atau swing low — input waktu secara manual atau fetch live dari data XAUUSD.</p>
+          <h3>Upgrade</h3>
+          <p>Bayar Rp 500.000 via QRIS (GoPay, OVO, Dana, Mobile Banking) — proses instan.</p>
         </div>
       </li>
       <li>
         <div class="step-num">3</div>
         <div class="step-content">
-          <h3>Proyeksi</h3>
-          <p>Dapatkan proyeksi cycle untuk M5, M15, M30, dan H1 — lengkap dengan target window ±1-2 bar.</p>
+          <h3>Akses</h3>
+          <p>Calculator premium langsung terbuka setelah pembayaran diverifikasi.</p>
         </div>
       </li>
       <li>
         <div class="step-num">4</div>
         <div class="step-content">
           <h3>Trade</h3>
-          <p>Gunakan proyeksi sebagai referensi entry. Selalu konfirmasi dengan chart broker kamu.</p>
+          <p>Input swing high / swing low — dapatkan level proyeksi support &amp; resistance harian.</p>
         </div>
       </li>
     </ol>
@@ -1437,7 +1493,7 @@
   <div class="container">
     <div class="section-label">Lihat Cara Kerja</div>
     <h2 class="sec-title" style="text-align:center;">Pahami kalkulator dalam 45 detik.</h2>
-    <p class="sec-sub" style="text-align:center;">Demo singkat fitur utama — tonton sebelum mulai analisa.</p>
+    <p class="sec-sub" style="text-align:center;">Demo singkat fitur utama — tonton sebelum upgrade.</p>
 
     <div class="demo-video-wrapper">
       <iframe
@@ -1460,24 +1516,24 @@
 <section>
   <div class="container">
     <div class="section-label">Harga</div>
-    <h2 class="sec-title" style="text-align:center;">Gratis. Akses penuh. Tanpa login.</h2>
-    <p class="sec-sub" style="text-align:center;">Langsung pakai, tidak perlu daftar, tidak perlu bayar.</p>
+    <h2 class="sec-title" style="text-align:center;">Satu harga. Akses penuh. Selamanya.</h2>
+    <p class="sec-sub" style="text-align:center;">Tidak ada tingkatan, tidak ada upsell, tidak ada biaya bulanan.</p>
 
     <div class="pricing-card">
       <div class="pricing-plan">Lifetime</div>
-      <div class="pricing-price">Rp 0</div>
-      <p class="pricing-note">Tanpa biaya, tanpa batasan hitungan</p>
+      <div class="pricing-price">Rp 500.000</div>
+      <p class="pricing-note">Sekali bayar, akses seumur hidup</p>
 
       <ul class="pricing-features">
         <li>Unlimited Gann Square of 9 calculations</li>
-        <li>Gann Astro Cycle projections (M5, M15, M30, H1)</li>
-        <li>Live fetch swing detection (XAUUSD)</li>
+        <li>Level support &amp; resistance harian</li>
         <li>Akses dari HP &amp; laptop (PWA)</li>
-        <li>Tanpa iklan, tanpa hidden fee</li>
+        <li>Update gratis selamanya</li>
+        <li>Tidak ada biaya bulanan</li>
       </ul>
 
-      <a href="#" class="pricing-cta" onclick="landingHandleAccess(event)">✦ BUKA KALKULATOR</a>
-      <p class="pricing-payment">Akses instan — langsung dari browser, tanpa instalasi</p>
+      <a href="#" class="pricing-cta" onclick="landingHandleAccess(event)">✦ GET PREMIUM ACCESS</a>
+      <p class="pricing-payment">Pembayaran via QRIS — GoPay, OVO, Dana, Mobile Banking</p>
     </div>
   </div>
 </section>
@@ -1491,33 +1547,33 @@
     <h2 class="sec-title">Pertanyaan yang sering diajukan.</h2>
 
     <div class="faq-item">
-      <div class="faq-q">Perlu login atau daftar?</div>
-      <div class="faq-a">Tidak perlu. Langsung buka kalkulator dan pakai. Tidak ada registrasi, tidak ada email, tidak ada password. Tools ini dirancang supaya kamu bisa langsung fokus ke analisa, bukan ke urusan administrasi akun.</div>
+      <div class="faq-q">Ada versi gratis?</div>
+      <div class="faq-a">Tidak. QUANTUM Leaps adalah tools premium untuk trader yang serius. Tidak ada trial, tidak ada free tier — langsung full akses. Kami percaya kalau tools ini berguna, pengguna tidak perlu trial untuk membuktikannya.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q">Gratis selamanya?</div>
-      <div class="faq-a">Ya. Kalkulator ini gratis untuk dipakai tanpa batas. Kalau kamu merasa terbantu dan ingin support pengembangan, kamu bisa share ke trader lain atau tinggalkan feedback — itu sudah lebih dari cukup.</div>
+      <div class="faq-q">Kalau tidak puas?</div>
+      <div class="faq-a">Silakan hubungi kami. Setiap pembelian dievaluasi kasus per kasus. Keputusan refund sepenuhnya di kebijakan kami — tapi kami selalu berusaha yang terbaik untuk pengguna.</div>
     </div>
 
     <div class="faq-item">
       <div class="faq-q">Apakah hasil selalu akurat?</div>
-      <div class="faq-a">Gann Square of 9 &amp; Gann Astro Cycle adalah metode matematis yang sudah digunakan trader profesional sejak puluhan tahun. Hasilnya berupa proyeksi level — gunakan sebagai referensi entry, bukan jaminan profit. Trading tetap butuh analisis Anda sendiri.</div>
+      <div class="faq-a">Gann Square of 9 adalah metode matematis yang sudah digunakan trader profesional sejak puluhan tahun. Hasilnya berupa proyeksi level — gunakan sebagai referensi entry, bukan jaminan profit. Trading tetap butuh analisis Anda sendiri.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q">Data live XAUUSD dari mana?</div>
-      <div class="faq-a">Data live XAUUSD di-fetch dari CoinGecko (PAXG gold-backed token) via API proxy. Untuk hasil paling akurat, selalu konfirmasi dengan chart broker kamu sebelum entry.</div>
+      <div class="faq-q">Bayar pakai apa?</div>
+      <div class="faq-a">QRIS — bisa pakai GoPay, OVO, Dana, atau Mobile Banking. Proses instan, akun aktif otomatis begitu pembayaran terverifikasi oleh sistem.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q">Akses selamanya?</div>
-      <div class="faq-a">Ya. Karena gratis, tidak ada batasan waktu dan tidak ada subscription. Bookmark halaman ini dan buka kapan saja kamu butuh analisa. Semua update fitur juga otomatis tersedia tanpa perlu install apa-apa.</div>
+      <div class="faq-q">Lifetime itu benar-benar selamanya?</div>
+      <div class="faq-a">Ya. Sekali bayar Rp 500.000 — akses tidak terbatas, termasuk update fitur di masa depan. Tidak ada perpanjangan, tidak ada subscription.</div>
     </div>
 
     <div class="faq-item">
-      <div class="faq-q">Gimana cara mulai?</div>
-      <div class="faq-a">Klik tombol "Buka Kalkulator" di atas → langsung terbuka di browser kamu. Pilih tab Square of 9 atau Astro Cycle, input data swing, klik proyeksi. Total waktu: kurang dari 30 detik.</div>
+      <div class="faq-q">Gimana cara daftar dan mulai?</div>
+      <div class="faq-a">Klik tombol "Get Premium Access" di atas → login dengan Google → bayar QRIS → langsung bisa pakai calculator. Total waktu: kurang dari 2 menit.</div>
     </div>
   </div>
 </section>
@@ -1599,18 +1655,40 @@
     if (landBtn && mainBtn) landBtn.textContent = mainBtn.textContent;
   }
 
-  // ── LANDING CTA — direct to calculator (no login required) ──
-  function landingHandleAccess(e) {
+  // ── LANDING CTA — triggers auth → premium flow ──
+  async function landingHandleAccess(e) {
     e.preventDefault();
-    showPage('pageCalc');
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+      showAuthModal();
+      return;
+    }
+    const premium = await isPremium();
+    if (premium) {
+      showPage('pageCalc');
+    } else {
+      showPage('pageSub');
+    }
   }
 
-  // ── Update landing nav CTA — always direct to calculator ──
-  function updateLandingNav() {
+  // ── Update landing nav CTA based on login state ──
+  async function updateLandingNav() {
     const navCta = document.querySelector('.page-landing .nav-cta');
     if (!navCta) return;
-    navCta.textContent = '✦ KALKULATOR';
-    navCta.onclick = function(e) { e.preventDefault(); showPage('pageCalc'); };
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (session) {
+      const premium = await isPremium();
+      if (premium) {
+        navCta.textContent = '✦ KALKULATOR';
+        navCta.onclick = function(e) { e.preventDefault(); showPage('pageCalc'); };
+      } else {
+        navCta.textContent = '✦ UPGRADE';
+        navCta.onclick = landingHandleAccess;
+      }
+    } else {
+      navCta.textContent = '✦ PREMIUM';
+      navCta.onclick = landingHandleAccess;
+    }
   }
 
   // Global variable for auth state
@@ -2240,40 +2318,83 @@ const supabaseClient = window.supabase.createClient(
 // Forward declaration to avoid hoisting issues
 let updateUserBadge;
 
-// Check session on load + auth state listener (no-op since login removed)
+// Check session on load + auth state listener
 supabaseClient.auth.onAuthStateChange(async (event, session) => {
   if (session && session.user) {
     currentUser = session.user;
     localStorage.setItem('ql-user-email', currentUser.email);
     await updateUserBadge();
+    await updatePremiumButton();
     updateLandingNav();
-    hideLoader();
+    // Route on any event with a session (handles both initial load & sign-in)
+    const premium = await isPremium();
+    const currentId = document.querySelector('.page.active')?.id;
+    if (currentId !== 'pageSub') {
+      if (premium && currentId !== 'pageCalc') {
+        showPage('pageCalc');
+      } else if (!premium && currentId !== 'pageLanding') {
+        showPage('pageLanding');
+      } else {
+        hideLoader();
+      }
+    } else {
+      hideLoader();
+    }
   } else {
     currentUser = null;
     await updateUserBadge();
+    updatePremiumButton();
     updateLandingNav();
-    hideLoader();
   }
 });
 
-// Init — just hide loader, no premium gating
+// Init auth state — jalankan setelah semua CDN scripts selesai load
 async function initAuth() {
   try {
-    hideLoader();
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (session && session.user) {
+      currentUser = session.user;
+      localStorage.setItem('ql-user-email', currentUser.email);
+    }
+    await updateUserBadge();
+    await updatePremiumButton();
     updateLandingNav();
+
+    // Route: premium → calculator, non-premium → landing
+    // If user explicitly navigated to pageSub, don't override
+    const currentPage = document.querySelector('.page.active');
+    if (currentPage && currentPage.id !== 'pageSub') {
+      const premium = await isPremium();
+      if (premium && currentPage.id !== 'pageCalc') {
+        showPage('pageCalc');
+        return;
+      } else if (!premium && currentPage.id !== 'pageLanding') {
+        showPage('pageLanding');
+        return;
+      }
+    }
+    // No routing needed — hide loader so pageLanding is revealed
+    hideLoader();
   } catch(e) {
-    console.warn('init error:', e.message);
+    console.warn('initAuth error:', e.message);
     hideLoader();
     updateLandingNav();
+    // On error, show landing if not already on a specific page
+    const currentPage = document.querySelector('.page.active');
+    if (currentPage && currentPage.id !== 'pageSub' && currentPage.id !== 'pageLanding') {
+      showPage('pageLanding');
+    }
   }
 }
 
 // Jalankan saat window load (bukan DOMContentLoaded) supaya CDN sudah siap
 if (document.readyState === 'complete') {
   initAuth();
+  setTimeout(initGoogleGIS, 1000);
 } else {
   window.addEventListener('load', () => {
     initAuth();
+    setTimeout(initGoogleGIS, 1000);
   });
 }
 
