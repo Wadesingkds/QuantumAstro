@@ -1166,10 +1166,16 @@
     <div class="divider"></div>
     <div class="results-header">
       <span class="results-label">// PROJECTION LEVELS</span>
-      <button class="btn-copy" id="btnCopy" onclick="copyResults()">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        COPY ALL
-      </button>
+      <div style="display:flex; gap:8px;">
+        <button class="btn-copy" id="btnSendToAstro" onclick="sendToAstro()" title="Gunakan untuk proyeksi Astro Cycle">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          UNTUK ASTRO
+        </button>
+        <button class="btn-copy" id="btnCopy" onclick="copyResults()">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          COPY ALL
+        </button>
+      </div>
     </div>
 
     <div id="buyGroup" class="result-group" style="border:1px solid rgba(34,197,94,0.12);border-radius:8px;display:none;">
@@ -1917,6 +1923,16 @@
       return;
     }
 
+    // Track last swing for cross-link to Astro Cycle
+    const highVal = hasHigh ? parseFloat(highEl.value) : null;
+    const lowVal  = hasLow  ? parseFloat(lowEl.value)  : null;
+    lastSq9Swing = {
+      hasHigh, hasLow,
+      high: highVal,
+      low:  lowVal,
+      timestamp: Date.now()
+    };
+
     errHigh.textContent = errLow.textContent = '⚠ Enter a valid positive number';
     btn.classList.add('loading'); btn.disabled = true;
     results.classList.remove('show');
@@ -1959,6 +1975,7 @@
     ['val-buy1','val-buy2','val-sell1','val-sell2'].forEach(id => {
       document.getElementById(id).textContent = '—';
     });
+    lastSq9Swing = null;
   }
 
   function copyResults() {
@@ -2023,11 +2040,44 @@
 
   // ── ASTRO CYCLE ──
   let astroSwingType = 'high';
+  let lastSq9Swing = null;  // tracked by calculate() for cross-link
 
   function setAstroSwingType(type) {
     astroSwingType = type;
     document.getElementById('astroTypeHigh').classList.toggle('active', type === 'high');
     document.getElementById('astroTypeLow').classList.toggle('active', type === 'low');
+  }
+
+  // ── CROSS-LINK: Square of 9 → Astro Cycle ──
+  // Send last calculated swing to Astro tab. User must still set the swing
+  // datetime manually (default = current time) since Sq9 has no datetime input.
+  function sendToAstro() {
+    if (!lastSq9Swing) {
+      showToast('Hitung dulu di Square of 9, baru kirim ke Astro', 'warning', 'NO DATA');
+      return;
+    }
+    // Decide swing type from last input
+    let type = 'high';
+    if (lastSq9Swing.hasHigh && !lastSq9Swing.hasLow) type = 'high';
+    else if (!lastSq9Swing.hasHigh && lastSq9Swing.hasLow) type = 'low';
+    else if (lastSq9Swing.hasHigh && lastSq9Swing.hasLow) {
+      // Both filled — default to HIGH (user can toggle to LOW)
+      type = 'high';
+    }
+    setAstroSwingType(type);
+
+    // Pre-fill datetime with current time (user adjusts to actual swing time)
+    const now = new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    const dtStr = now.getFullYear() + '-' + pad(now.getMonth()+1) + '-' + pad(now.getDate())
+                + 'T' + pad(now.getHours()) + ':' + pad(now.getMinutes());
+    const dtInput = document.getElementById('astroDatetime');
+    if (dtInput) dtInput.value = dtStr;
+
+    // Switch tab
+    switchCalcTab('astro');
+
+    showToast('Sesuaikan datetime swing di tab Astro', 'info', 'DATA TERKIRIM');
   }
 
   function astroFmtDateTime(dt) {
@@ -2165,6 +2215,7 @@
   // Expose to global
   window.switchCalcTab = switchCalcTab;
   window.setAstroSwingType = setAstroSwingType;
+  window.sendToAstro = sendToAstro;
   window.calculateAstroCycle = calculateAstroCycle;
   window.resetAstro = resetAstro;
   window.copyAstroResults = copyAstroResults;
