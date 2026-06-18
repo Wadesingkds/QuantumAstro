@@ -1,6 +1,6 @@
 /**
  * /api/candles.js — Proxy fetch XAUUSD OHLC candles
- * Supports: Binance Futures (XAUUSDT), fallback to GoldAPI
+ * Sources: Binance Futures (XAUUSDT) → Binance Spot (PAXGUSDT) → Yahoo Finance (XAUUSD=X)
  * Query: ?interval=15m&limit=200
  */
 
@@ -8,6 +8,7 @@ export default async function handler(req, res) {
   // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -20,17 +21,16 @@ export default async function handler(req, res) {
   }
 
   const lim = Math.min(parseInt(limit) || 200, 500);
+  const errors = [];
 
+  // ── Source 1: Binance Futures XAUUSDT ──
   try {
-    // Primary: Binance Futures XAUUSDT
-    const binanceUrl = `https://fapi.binance.com/fapi/v1/klines?symbol=XAUUSDT&interval=${interval}&limit=${lim}`;
-    const resp = await fetch(binanceUrl, { signal: AbortSignal.timeout(8000) });
-
+    const url = `https://fapi.binance.com/fapi/v1/klines?symbol=XAUUSDT&interval=${interval}&limit=${lim}`;
+    const resp = await fetch(url, { signal: AbortSignal.timeout(8000) });
     if (resp.ok) {
       const raw = await resp.json();
-      // Binance format: [openTime, open, high, low, close, volume, closeTime, ...]
       const candles = raw.map(k => ({
-        time: k[0],                          // openTime ms
+        time: k[0],
         open: parseFloat(k[1]),
         high: parseFloat(k[2]),
         low: parseFloat(k[3]),
@@ -38,33 +38,100 @@ export default async function handler(req, res) {
         volume: parseFloat(k[5]),
         timeISO: new Date(k[0]).toISOString()
       }));
-      return res.status(200).json({ source: 'binance', symbol: 'XAUUSDT', interval, candles });
+      return res.status(200).json({ source: 'binance-futures', symbol: 'XAUUSDT', interval, candles });
     }
-
-    // Fallback: try GC=F (Gold Futures) from a public proxy
-    throw new Error(`Binance returned ${resp.status}`);
+    errors.push(`binance-futures: HTTP ${resp.status}`);
   } catch (err) {
-    // Fallback: try Binance spot with PAXG (gold-backed token)
-    try {
-      const paxgUrl = `https://api.binance.com/api/v3/klines?symbol=PAXGUSDT&interval=${interval}&limit=${lim}`;
-      const resp2 = await fetch(paxgUrl, { signal: AbortSignal.timeout(8000) });
-      if (resp2.ok) {
-        const raw = await resp2.json();
-        const candles = raw.map(k => ({
-          time: k[0],
-          open: parseFloat(k[1]),
-          high: parseFloat(k[2]),
-          low: parseFloat(k[3]),
-          close: parseFloat(k[4]),
-          volume: parseFloat(k[5]),
-          timeISO: new Date(k[0]).toISOString()
-        }));
-        return res.status(200).json({ source: 'binance-spot', symbol: 'PAXGUSDT', interval, candles, note: 'PAXG as gold proxy' });
-      }
-    } catch (err2) {
-      // ignore
-    }
-
-    return res.status(502).json({ error: 'Failed to fetch candle data', detail: err.message });
+    errors.push(`binance-futures: ${err.message}`);
   }
+
+  // ── Source 2: Binance Spot PAXGUSDT (gold-backed token proxy) ──
+  try {
+    const url = `https://api.binance.com/api/v3/klines?symbol=PAXGUSDT&interval=${interval}&limit=${lim}`;
+    const resp = await fetch(url, { signal: AbortSignal.timeout(8000) });
+    if (resp.ok) {
+      const raw = await resp.json();
+      const candles = raw.map(k => ({
+        time: k[0],
+        open: parseFloat(k[1]),
+        high: parseFloat(k[2]),
+        low: parseFloat(k[3]),
+        close: parseFloat(k[4]),
+        volume: parseFloat(k[5]),
+        timeISO: new Date(k[0]).toISOString()
+      }));
+      return res.status(200).json({ source: 'binance-spot', symbol: 'PAXGUSDT', interval, candles, note: 'PAXG as gold proxy' });
+    }
+    errors.push(`binance-spot: HTTP ${resp.status}`);
+  } catch (err) {
+    errors.push(`binance-spot: ${err.message}`);
+  }
+
+  // ── Source 3: Yahoo Finance XAUUSD=X ──
+  try {
+    // Map our intervals to Yahoo Finance format
+    const yahooIntervalMap = {
+      '1m': '1m', '3m': '5m', '5m': '5m', '15m': '15m',
+      '30m': '30m', '1h': '60m', '2h': '60m', '4h': '60m',
+      '6h': '60m', '8h': '60m', '12h': '60m', '1d': '1d'
+    };
+    const yInterval = yahooIntervalMap[interval] || '15m';
+    const yahooRange = lim <= 60 ? '5d' : lim <= 200 ? '1mo' : '3mo';
+
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/XAUUSD=X?interval=${yInterval}&range=${yahooRange}`;
+    const resp = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; QuantumAstro/1.0)' },
+      signal: AbortSignal.timeout(10000)
+    });
+
+    if (resp.ok) {
+      const data = await resp.json();
+      const result = data?.chart?.result?.[0];
+      if (!result) throw new Error('No data in Yahoo response');
+
+      const timestamps = result.timestamp || [];
+      const quote = result.indicators?.quote?.[0] || {};
+      const opens = quote.open || [];
+      const highs = quote.high || [];
+      const lows = quote.low || [];
+      const closes = quote.close || [];
+      const volumes = quote.volume || [];
+
+      const candles = [];
+      for (let i = 0; i < timestamps.length; i++) {
+        if (opens[i] == null || highs[i] == null || lows[i] == null || closes[i] == null) continue;
+        const timeMs = timestamps[i] * 1000;
+        candles.push({
+          time: timeMs,
+          open: parseFloat(opens[i]),
+          high: parseFloat(highs[i]),
+          low: parseFloat(lows[i]),
+          close: parseFloat(closes[i]),
+          volume: parseFloat(volumes[i] || 0),
+          timeISO: new Date(timeMs).toISOString()
+        });
+      }
+
+      // Trim to limit
+      const trimmed = candles.slice(-lim);
+
+      if (trimmed.length < 10) throw new Error('Insufficient Yahoo candles: ' + trimmed.length);
+
+      return res.status(200).json({
+        source: 'yahoo-finance',
+        symbol: 'XAUUSD=X',
+        interval: yInterval,
+        candles: trimmed
+      });
+    }
+    errors.push(`yahoo: HTTP ${resp.status}`);
+  } catch (err) {
+    errors.push(`yahoo: ${err.message}`);
+  }
+
+  // ── All sources failed ──
+  return res.status(502).json({
+    error: 'All data sources failed',
+    detail: errors.join(' | ')
+  });
 }
