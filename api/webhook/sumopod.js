@@ -104,8 +104,8 @@ export default async function handler(req, res) {
     );
     const rows = await checkResp.json();
 
-    if (!rows || rows.length === 0) {
-      console.error("[SumoPod Webhook] Order not found in Supabase:", evt.orderId);
+    if (!checkResp.ok || !Array.isArray(rows) || rows.length === 0) {
+      console.error("[SumoPod Webhook] Order not found in Supabase:", evt.orderId, "status:", checkResp.status);
       return res.status(404).json({ error: "Order not found" });
     }
 
