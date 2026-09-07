@@ -92,31 +92,23 @@ export default async function handler(req, res) {
     return res.status(502).json({ error: "Gagal membuat link pembayaran" });
   }
 
-  // Insert pending subscription to Supabase, linked to user_id
+  // Insert pending payment row to Supabase, linked to user_id
   if (SUPABASE_URL && SUPABASE_SERVICE_KEY) {
     try {
-      await fetch(`${SUPABASE_URL}/rest/v1/subscriptions`, {
+      await fetch(`${SUPABASE_URL}/rest/v1/payments`, {
         method: "POST",
         headers: {
           apikey: SUPABASE_SERVICE_KEY,
           Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
           "Content-Type": "application/json",
-          Prefer: "resolution=merge-duplicates",
         },
         body: JSON.stringify({
+          order_id: orderId,
           user_id: userId,
-          email: userEmail,
-          plan,
+          amount,
+          fee: payment.fee ?? null,
+          payment_method: "qris",
           status: "pending",
-          expires_at: null, // lifetime = no expiry
-          metadata: {
-            order_id: orderId,
-            amount,
-            provider: "sumopod",
-            sumopod_payment_id: payment.payment_id || null,
-            sumopod_fee: payment.fee ?? null,
-            timestamp: Date.now(),
-          },
         }),
       });
     } catch (e) {

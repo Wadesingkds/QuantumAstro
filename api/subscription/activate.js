@@ -1,7 +1,7 @@
 // Server-side activation endpoint
 // GET /api/subscription/activate?order_id=...&user_id=...&plan=...
-// Called by Pakasir redirect after payment
-// Verifies order exists in Supabase before showing success page
+// Called by SumoPod redirect after payment
+// Verifies order is completed in payments table before showing success page
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
@@ -22,9 +22,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Check order exists and belongs to this user
+    // Check payment completed and belongs to this user
     const checkResp = await fetch(
-      `${SUPABASE_URL}/rest/v1/subscriptions?metadata->>order_id=eq.${encodeURIComponent(order_id)}&user_id=eq.${encodeURIComponent(user_id)}&select=status,plan`,
+      `${SUPABASE_URL}/rest/v1/payments?order_id=eq.${encodeURIComponent(order_id)}&user_id=eq.${encodeURIComponent(user_id)}&select=status`,
       {
         headers: {
           'apikey': SUPABASE_SERVICE_KEY,
@@ -34,18 +34,16 @@ export default async function handler(req, res) {
     );
     const rows = await checkResp.json();
 
-    if (!rows || rows.length === 0) {
+    if (!checkResp.ok || !Array.isArray(rows) || rows.length === 0) {
       // Order not found — may still be pending webhook
       return res.redirect('/success.html?status=pending&reason=verifying');
     }
 
-    const sub = rows[0];
-
-    if (sub.status === 'active') {
-      return res.redirect(`/success.html?status=active&plan=${encodeURIComponent(sub.plan)}&verified=1`);
+    if (rows[0].status === 'completed') {
+      return res.redirect(`/success.html?status=active&plan=${encodeURIComponent(plan)}&verified=1`);
     }
 
-    // Pending — webhook will activate when Pakasir confirms
+    // Pending — webhook will activate when SumoPod confirms
     return res.redirect(`/success.html?status=pending&plan=${encodeURIComponent(plan)}`);
 
   } catch (e) {
