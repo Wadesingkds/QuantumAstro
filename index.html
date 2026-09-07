@@ -2383,8 +2383,9 @@
         <div style="flex:1;height:1px;background:rgba(212,175,55,0.15);"></div>
       </div>
 
-      <button onclick="handleGoogleAuth()"
-        style="width:100%;padding:15px;background:var(--gold-muted);border:1px solid var(--border);color:var(--text);border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:15px;letter-spacing:2px;font-weight:600;cursor:pointer;transition:background 0.2s;margin-bottom:20px;"
+      <div id="gisBtn" style="width:100%;display:flex;justify-content:center;margin-bottom:12px;min-height:44px;"></div>
+      <button id="googleFallbackBtn" onclick="handleGoogleAuth()"
+        style="display:none;width:100%;padding:15px;background:var(--gold-muted);border:1px solid var(--border);color:var(--text);border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:15px;letter-spacing:2px;font-weight:600;cursor:pointer;transition:background 0.2s;margin-bottom:20px;"
         onmouseover="this.style.background='var(--gold-dim)'" onmouseout="this.style.background='var(--gold-muted)'">&#9711;&nbsp; LANJUTKAN DENGAN GOOGLE</button>
 
       <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -2702,44 +2703,77 @@ const GOOGLE_CLIENT_ID = '891836833664-0k6ijs6l9l6865crue33djtqasf706u8.apps.goo
 let googleInitialized = false;
 let googleCallbackPending = false;
 
+async function handleGoogleCredential(response) {
+  googleCallbackPending = false;
+  if (!response || !response.credential) return;
+  try {
+    const { data, error } = await supabaseClient.auth.signInWithIdToken({
+      provider: 'google',
+      token: response.credential
+    });
+    if (error) throw error;
+    currentUser = data.user;
+    // Attach UTM attribution if first signup (no existing metadata)
+    try {
+      const attribution = getAttribution();
+      const hasUtm = Object.keys(attribution).length > 0;
+      const meta = currentUser.user_metadata || {};
+      if (hasUtm && !meta.utm_source) {
+        await supabaseClient.auth.updateUser({ data: attribution });
+      }
+    } catch (e) { console.warn('Attribution attach failed:', e); }
+    localStorage.setItem('ql-user-email', currentUser.email);
+    closeAuthModal();
+    showToast('Login berhasil', 'success', 'WELCOME');
+    window.location.reload();
+  } catch (err) {
+    showToast(err.message, 'error', 'GOOGLE AUTH ERROR');
+  }
+}
+
+let googleButtonRendered = false;
+function renderGoogleButton() {
+  try {
+    if (googleButtonRendered) return;
+    const wrap = document.getElementById('gisBtn');
+    if (!wrap || typeof google === 'undefined' || !google.accounts) return;
+    google.accounts.id.renderButton(wrap, {
+      type: 'standard', theme: 'outline', size: 'large',
+      text: 'continue_with', shape: 'rectangular', width: 320
+    });
+    googleButtonRendered = wrap.querySelector('iframe') !== null;
+    if (googleButtonRendered) {
+      const fb = document.getElementById('googleFallbackBtn');
+      if (fb) fb.style.display = 'none';
+    }
+  } catch (e) { console.warn('renderButton failed:', e.message); }
+}
+
 function initGoogleGIS() {
   if (googleInitialized || typeof google === 'undefined' || !google.accounts) return;
   googleInitialized = true;
 
   google.accounts.id.initialize({
     client_id: GOOGLE_CLIENT_ID,
+    ux_mode: 'popup',
     auto_select: false,
     cancel_on_tap_outside: false,
-    callback: async (response) => {
-      googleCallbackPending = false;
-      if (response.credential) {
-        try {
-          const { data, error } = await supabaseClient.auth.signInWithIdToken({
-            provider: 'google',
-            token: response.credential
-          });
-          if (error) throw error;
-          currentUser = data.user;
-          // Attach UTM attribution if first signup (no existing metadata)
-          try {
-            const attribution = getAttribution();
-            const hasUtm = Object.keys(attribution).length > 0;
-            const meta = currentUser.user_metadata || {};
-            if (hasUtm && !meta.utm_source) {
-              await supabaseClient.auth.updateUser({ data: attribution });
-            }
-          } catch (e) { console.warn('Attribution attach failed:', e); }
-          localStorage.setItem('ql-user-email', currentUser.email);
-          closeAuthModal();
-          showToast('Login berhasil', 'success', 'WELCOME');
-          window.location.reload();
-        } catch (err) {
-          showToast(err.message, 'error', 'GOOGLE AUTH ERROR');
-        }
-      }
-    }
+    callback: handleGoogleCredential
   });
+  renderGoogleButton();
 }
+
+// Init GIS early (async script) so the official button is ready when modal opens.
+// If GIS never loads, show the manual fallback button instead.
+(function initGISRetry(n) {
+  if (typeof google !== 'undefined' && google.accounts) { initGoogleGIS(); return; }
+  if (n <= 0) {
+    const fb = document.getElementById('googleFallbackBtn');
+    if (fb) fb.style.display = 'block';
+    return;
+  }
+  setTimeout(() => initGISRetry(n - 1), 1000);
+})(10);
 
 async function handleGoogleAuth() {
   try {
