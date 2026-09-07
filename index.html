@@ -1069,7 +1069,7 @@
   // If no session: hide loader immediately = guest sees landing instantly
   // If session exists: loader stays visible until initAuth finishes
   (function() {
-    var sbKey = 'sb-deqjvxsxovobpfisjyhg-auth-token';
+    var sbKey = 'sb-unybsvtbjeukzqazpzjn-auth-token';
     if (!localStorage.getItem(sbKey)) {
       var loader = document.getElementById('appLoader');
       if (loader) {
@@ -2402,7 +2402,7 @@
 <script>
 // Supabase Auth Init
 const supabaseClient = window.supabase.createClient(
-  'https://deqjvxsxovobpfisjyhg.supabase.co',
+  'https://unybsvtbjeukzqazpzjn.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVueWJzdnRiamV1a3pxYXpwempuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwMjkzMzgsImV4cCI6MjA5NzYwNTMzOH0.qEwg1mjC7pzHlQkKt9Wyc9xNNf563kAMlLBu26jDUyU'
 );
 
