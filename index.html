@@ -2751,7 +2751,23 @@ async function handleGoogleAuth() {
     if (!googleInitialized) initGoogleGIS();
     if (googleCallbackPending) return;
     googleCallbackPending = true;
-    google.accounts.id.prompt();
+    google.accounts.id.prompt((n) => {
+      // One Tap dibatalkan / tidak tampil / tidak ada sesi Google:
+      // bebaskan tombol + kasih pesan, jangan mati diam-diam
+      try {
+        if (n && (n.isSkippedMoment?.() || n.isDismissedMoment?.())) {
+          googleCallbackPending = false;
+          const r = (n.getSkippedReason?.() || n.getDismissedReason?.() || n.getNotDisplayedReason?.() || '');
+          if (/no_session_select|opt_out/.test(r)) {
+            showToast('Tidak ada sesi Google di browser ini — pakai email+password, atau buka di browser yang sudah login Google', 'error', 'GOOGLE NO SESSION');
+          } else if (r) {
+            showToast('Google Sign-In tidak tampil (' + r + ')', 'error', 'GOOGLE AUTH');
+          } else {
+            showToast('Google Sign-In dibatalkan, coba lagi', 'error', 'GOOGLE AUTH');
+          }
+        }
+      } catch (e) { googleCallbackPending = false; }
+    });
   } catch (err) {
     googleCallbackPending = false;
     showToast(err.message, 'error', 'GOOGLE AUTH ERROR');
