@@ -3,7 +3,7 @@
 // Verifikasi: Svix HMAC (diutamakan) atau static token. Raw body WAJIB untuk HMAC.
 // Setelah valid: aktivasi subscription di Supabase + catat ke Google Sheet.
 
-import { verifySvixSignature, verifyWebhookToken, parseSumopodEvent, PRO_AMOUNT } from "../../../lib/sumopod.js";
+import { verifySvixSignature, verifyWebhookToken, parseSumopodEvent, PRO_AMOUNT } from "../../lib/sumopod.js";
 
 export const config = {
   api: { bodyParser: false },

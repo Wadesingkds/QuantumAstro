@@ -8,3 +8,4 @@
 .env.prod.pulled
 .env.vercel
 .env.local
+.env*
