@@ -32,7 +32,7 @@ Gann Square of 9 Calculator untuk XAUUSD trading dengan sistem premium subscript
 
 ```bash
 SUPABASE_URL=https://deqjvxsxovobpfisjyhg.supabase.co
-SUPABASE_ANON_KEY=eyJhbG...ps1I
+SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVueWJzdnRiamV1a3pxYXpwempuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIwMjkzMzgsImV4cCI6MjA5NzYwNTMzOH0.qEwg1mjC7pzHlQkKt9Wyc9xNNf563kAMlLBu26jDUyU
 SUPABASE_SERVICE_KEY=eyJhbG...RYkg
 PAKASIR_API_KEY=***
 PAKASIR_SLUG=kiosk-wa
