@@ -7,12 +7,12 @@
       "source": "/(.*)",
       "headers": [
         {"key": "X-Content-Type-Options", "value": "nosniff"},
-        {"key": "X-Frame-Options", "value": "DENY"},
+        {"key": "X-Frame-Options", "value": "SAMEORIGIN"},
         {"key": "X-XSS-Protection", "value": "1; mode=block"},
         {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
         {"key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()"},
         {"key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload"},
-        {"key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' cdn.tailwindcss.com accounts.google.com cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' fonts.googleapis.com accounts.google.com; font-src 'self' fonts.gstatic.com; connect-src 'self' *.supabase.co accounts.google.com; img-src 'self' data: https:; frame-src 'self' www.youtube.com www.youtube-nocookie.com youtube.com accounts.google.com; frame-ancestors 'none';"}
+        {"key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' cdn.tailwindcss.com accounts.google.com cdn.jsdelivr.net https://accounts.google.com/gsi/client https://apis.google.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com accounts.google.com https://accounts.google.com/gsi/style; font-src 'self' fonts.gstatic.com; connect-src 'self' *.supabase.co accounts.google.com https://accounts.google.com https://www.googleapis.com; img-src 'self' data: https:; frame-src 'self' www.youtube.com www.youtube-nocookie.com youtube.com accounts.google.com https://accounts.google.com; frame-ancestors 'none';"}
       ]
     }
   ]
